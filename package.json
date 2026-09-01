@@ -1,0 +1,42 @@
+{
+  "name": "demo-widgets",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^9.4.0",
+    "@mui/material": "^9.4.0",
+    "@mui/system": "^9.4.0",
+    "@mui/x-charts": "^9.12.0",
+    "@mui/x-charts-pro": "^9.12.0",
+    "@mui/x-data-grid": "^9.12.0",
+    "@mui/x-data-grid-pro": "^9.12.0",
+    "@mui/x-date-pickers": "^9.12.0",
+    "@mui/x-date-pickers-pro": "^9.12.0",
+    "@mui/x-license": "^9.12.0",
+    "@mui/x-tree-view": "^9.12.0",
+    "@mui/x-tree-view-pro": "^9.12.0",
+    "@nuam/common-fe-lib-components": "^3.0.1",
+    "dayjs": "^1.11.23",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-grid-layout": "^2.2.4",
+    "react-router": "^8.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "typescript": "^5"
+  }
+}
