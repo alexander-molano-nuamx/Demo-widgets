@@ -7,6 +7,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import TuneIcon from "@mui/icons-material/Tune";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import ListAltIcon from "@mui/icons-material/ListAlt";
+import LeaderboardOutlinedIcon from "@mui/icons-material/LeaderboardOutlined";
 import type { IPage } from "@nuam/common-fe-lib-components";
 
 export const menuPages: IPage[] = [
@@ -61,6 +62,11 @@ export const menuPages: IPage[] = [
         name: "Todas las operaciones",
         path: "todas-las-operaciones",
         icon: <ListAltIcon fontSize="small" />,
+      },
+      {
+        name: "Rankings",
+        path: "rankings",
+        icon: <LeaderboardOutlinedIcon fontSize="small" />,
       },
     ],
   },

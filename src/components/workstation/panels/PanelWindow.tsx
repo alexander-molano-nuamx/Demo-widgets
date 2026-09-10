@@ -39,10 +39,10 @@ export function PanelWindow({
   const header = (
     <Stack
       direction="row"
-      alignItems="center"
-      justifyContent="space-between"
       className={dragHandleClassName}
       sx={{
+        alignItems: "center",
+        justifyContent: "space-between",
         px: 1,
         py: 0.5,
         bgcolor: "action.disabledBackground",
@@ -57,10 +57,10 @@ export function PanelWindow({
       </Typography>
       <Stack
         direction="row"
-        alignItems="center"
         spacing={0.5}
         className="panel-no-drag"
         onMouseDown={(e) => e.stopPropagation()}
+        sx={{ alignItems: "center" }}
       >
         {headerExtra}
         <Tooltip title={isMinimized ? "Restaurar" : "Minimizar"}>

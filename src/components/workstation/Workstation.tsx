@@ -1,5 +1,7 @@
 "use client";
 
+import "@/lib/muiLicense";
+
 import { useState } from "react";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import {
@@ -16,11 +18,13 @@ import { TickerBar } from "./TickerBar";
 import { FiltersRow } from "./FiltersRow";
 import { GridWorkspace } from "./GridWorkspace";
 import { AppSideBar, DRAWER_WIDTH } from "./AppSideBar";
+import { useWidgetWorkspace } from "./useWidgetWorkspace";
 
 export function Workstation() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [openSideBar, setOpenSideBar] = useState(false);
+  const workspace = useWidgetWorkspace();
 
   return (
     <NuamThemeWrapper>
@@ -53,7 +57,7 @@ export function Workstation() {
           }
         />
 
-        <AppSideBar open={openSideBar} />
+        <AppSideBar open={openSideBar} onOpenWidget={workspace.reopenWidget} />
 
         <Box
           sx={{
@@ -67,7 +71,7 @@ export function Workstation() {
         >
           <TickerBar />
           <FiltersRow />
-          <GridWorkspace />
+          <GridWorkspace {...workspace} />
         </Box>
       </Box>
     </NuamThemeWrapper>

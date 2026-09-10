@@ -1,9 +1,10 @@
 "use client";
 
 import { Box } from "@mui/material";
-import type { GridColDef } from "@mui/x-data-grid";
-import { DataGrid } from "@nuam/common-fe-lib-components";
+import type { GridColDef } from "@mui/x-data-grid-pro";
+import { DataGridPro } from "@nuam/common-fe-lib-components";
 import { watchlistRows, type WatchlistRow } from "@/lib/mock-data";
+import { compactDataGridSx } from "./dataGridStyles";
 import { PanelWindow, type PanelWindowControls } from "./panels/PanelWindow";
 
 const columns: GridColDef<WatchlistRow>[] = [
@@ -32,18 +33,19 @@ export function WatchlistPanel({
       {...controls}
     >
       <Box sx={{ flex: 1, minHeight: 0 }}>
-        <DataGrid
+        <DataGridPro
           rows={watchlistRows}
           columns={columns}
+          showToolbar
+          density="compact"
           pagination
           initialState={{
             pagination: { paginationModel: { pageSize: 10, page: 0 } },
           }}
           pageSizeOptions={[10, 25, 50]}
           language="es"
-          showDownload
-          handleFilters={() => {}}
-          sx={{ border: "none", height: "100%" }}
+          enableColumnMenu
+          sx={compactDataGridSx}
         />
       </Box>
     </PanelWindow>

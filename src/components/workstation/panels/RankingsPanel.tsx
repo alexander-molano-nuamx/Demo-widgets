@@ -6,6 +6,7 @@ import {
   instrumentRankingRows,
   participationRankingRows,
 } from "@/lib/mock-data";
+import { compactTableSx } from "../dataGridStyles";
 import { PanelWindow, type PanelWindowControls } from "./PanelWindow";
 
 interface RankingsPanelProps extends PanelWindowControls {
@@ -29,7 +30,7 @@ export function RankingsPanel({
         >
           Instrumentos - Renta variable
         </Typography>
-        <Table size="small">
+        <Table size="small" sx={compactTableSx}>
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontSize: "0.65rem" }}>Instrumento</TableCell>
@@ -56,7 +57,7 @@ export function RankingsPanel({
         >
           Participación - Renta variable
         </Typography>
-        <Table size="small">
+        <Table size="small" sx={compactTableSx}>
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontSize: "0.65rem" }}>Corredora</TableCell>

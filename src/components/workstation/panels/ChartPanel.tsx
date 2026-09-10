@@ -44,9 +44,7 @@ export function ChartPanel({ dragHandleClassName, ...controls }: ChartPanelProps
     >
       <Stack
         direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ px: 1.5, pt: 1 }}
+        sx={{ alignItems: "center", justifyContent: "space-between", px: 1.5, pt: 1 }}
       >
         <Typography variant="body2" sx={{ fontWeight: 700 }}>
           Grupo Aval

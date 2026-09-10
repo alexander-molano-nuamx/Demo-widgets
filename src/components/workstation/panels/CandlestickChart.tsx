@@ -202,8 +202,7 @@ export function CandlestickChart({ candles }: CandlestickChartProps) {
 
         <Stack
           direction="row"
-          justifyContent="space-between"
-          sx={{ px: 0.5, mt: 0.5 }}
+          sx={{ justifyContent: "space-between", px: 0.5, mt: 0.5 }}
         >
           {candles
             .filter((_, index) => index % timeTickEvery === 0)

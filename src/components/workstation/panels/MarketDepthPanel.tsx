@@ -5,6 +5,7 @@ import { Box, Chip, Stack, Table, TableBody, TableCell, TableHead, TableRow } fr
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import { Select, Typography } from "@nuam/common-fe-lib-components";
 import { marketDepthRows } from "@/lib/mock-data";
+import { compactTableSx } from "../dataGridStyles";
 import { PanelWindow, type PanelWindowControls } from "./PanelWindow";
 
 const orderOptions = [
@@ -40,9 +41,7 @@ export function MarketDepthPanel({
     >
       <Stack
         direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ px: 1.5, pt: 1 }}
+        sx={{ alignItems: "center", justifyContent: "space-between", px: 1.5, pt: 1 }}
       >
         <Typography variant="body2" sx={{ fontWeight: 700 }}>
           Grupo AVAL.
@@ -51,9 +50,7 @@ export function MarketDepthPanel({
 
       <Stack
         direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ px: 1.5, py: 0.5 }}
+        sx={{ alignItems: "center", justifyContent: "space-between", px: 1.5, py: 0.5 }}
       >
         <Select
           size="small"
@@ -62,7 +59,7 @@ export function MarketDepthPanel({
           onChange={(value) => setOrder(value as typeof orderOptions[number])}
           formControlProps={{ sx: { minWidth: 110 } }}
         />
-        <Stack direction="row" alignItems="center" spacing={0.5}>
+        <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
           <FilterAltOutlinedIcon sx={{ fontSize: 16, color: "primary.main" }} />
           <Typography variant="caption" sx={{ color: "primary.main", fontWeight: 700 }}>
             FILTROS
@@ -71,7 +68,7 @@ export function MarketDepthPanel({
       </Stack>
 
       <Box sx={{ flex: 1, overflow: "auto", px: 0.5 }}>
-        <Table size="small" stickyHeader>
+        <Table size="small" stickyHeader sx={compactTableSx}>
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontSize: "0.65rem" }}>Bid Acum.</TableCell>
