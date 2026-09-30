@@ -3,7 +3,9 @@
 import "@/lib/muiLicense";
 
 import { useState } from "react";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { Box, ListItemIcon, ListItemText, Menu, MenuItem, useMediaQuery, useTheme } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 import {
   NuamThemeWrapper,
   AppBar,
@@ -14,6 +16,7 @@ import {
   SwitchThemeButton,
   UserButton,
 } from "@nuam/common-fe-lib-components";
+import { setAuthenticated } from "@/lib/mock-auth";
 import { TickerBar } from "./TickerBar";
 import { FiltersRow } from "./FiltersRow";
 import { GridWorkspace } from "./GridWorkspace";
@@ -22,9 +25,17 @@ import { useWidgetWorkspace } from "./useWidgetWorkspace";
 
 export function Workstation() {
   const theme = useTheme();
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [openSideBar, setOpenSideBar] = useState(false);
+  const [userMenuAnchor, setUserMenuAnchor] = useState<HTMLElement | null>(null);
   const workspace = useWidgetWorkspace();
+
+  const handleLogout = () => {
+    setUserMenuAnchor(null);
+    setAuthenticated(false);
+    router.replace("/login");
+  };
 
   return (
     <NuamThemeWrapper>
@@ -52,10 +63,23 @@ export function Workstation() {
               <NotificationButton onClick={() => alert("Notificaciones")} />
               <LanguageButton onClick={() => alert("Cambiar idioma")} />
               <SwitchThemeButton />
-              <UserButton onClick={() => alert("Perfil de usuario")} />
+              <UserButton onClick={(e) => setUserMenuAnchor(e.currentTarget)} />
             </>
           }
         />
+
+        <Menu
+          anchorEl={userMenuAnchor}
+          open={Boolean(userMenuAnchor)}
+          onClose={() => setUserMenuAnchor(null)}
+        >
+          <MenuItem onClick={handleLogout}>
+            <ListItemIcon>
+              <LogoutIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Cerrar sesión</ListItemText>
+          </MenuItem>
+        </Menu>
 
         <AppSideBar open={openSideBar} onOpenWidget={workspace.reopenWidget} />
 

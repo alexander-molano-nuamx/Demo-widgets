@@ -27,6 +27,7 @@ export const tickerItems: TickerItem[] = [
   { symbol: "COLCAP", price: 1345.62, changePercent: -0.21 },
 ];
 
+/** @deprecated Legacy placeholder rows, still used by the workstation-library variant. */
 export interface WatchlistRow {
   id: number;
   fileId: string;
@@ -38,6 +39,7 @@ export interface WatchlistRow {
   country: string;
 }
 
+/** @deprecated Legacy placeholder rows, still used by the workstation-library variant. */
 export const watchlistRows: WatchlistRow[] = Array.from({ length: 18 }).map(
   (_, index) => ({
     id: index + 1,
@@ -50,6 +52,318 @@ export const watchlistRows: WatchlistRow[] = Array.from({ length: 18 }).map(
     country: "USD",
   }),
 );
+
+export type WatchlistSession =
+  | "Pre-apertura"
+  | "Subasta"
+  | "Continuo"
+  | "Cerrado"
+  | "Suspendido";
+
+export type WatchlistCountry = "CL" | "PE" | "CO";
+export type WatchlistCurrency = "CLP" | "PEN" | "COP" | "USD";
+export type WatchlistFlag = "none" | "green" | "yellow" | "red";
+
+export interface WatchlistInstrumentRow {
+  id: number;
+  orderbook: string;
+  description: string;
+  status: "ENABLED" | "DISABLED";
+  session: WatchlistSession;
+  settlement: string;
+  country: WatchlistCountry;
+  currency: WatchlistCurrency;
+  last: number | null;
+  netChange: number | null;
+  changePercent: number | null;
+  open: number | null;
+  high: number | null;
+  low: number | null;
+  previousClose: number | null;
+  volume: number | null;
+  amount: number | null;
+  bidPrice: number | null;
+  bidQty: number | null;
+  askPrice: number | null;
+  askQty: number | null;
+  spread: number | null;
+  referencePrice: number | null;
+  lastTradeTime: string | null;
+  flag: WatchlistFlag;
+}
+
+export const watchlistInstrumentRows: WatchlistInstrumentRow[] = [
+  {
+    id: 1,
+    orderbook: "GXTESCOL",
+    description: "FONDO BURSATIL GLOBAL X TES COLOMBIA COP GBI-EM ID ETF",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+2",
+    country: "CO",
+    currency: "COP",
+    last: null,
+    netChange: null,
+    changePercent: -0.24,
+    open: null,
+    high: null,
+    low: null,
+    previousClose: 54120.0,
+    volume: null,
+    amount: null,
+    bidPrice: null,
+    bidQty: null,
+    askPrice: null,
+    askQty: null,
+    spread: null,
+    referencePrice: 54000.5,
+    lastTradeTime: null,
+    flag: "none",
+  },
+  {
+    id: 2,
+    orderbook: "CSACOL",
+    description: "CELSIA COLOMBIA SA ESP",
+    status: "ENABLED",
+    session: "Subasta",
+    settlement: "T+1",
+    country: "CO",
+    currency: "COP",
+    last: 2500.48,
+    netChange: 1.3,
+    changePercent: 0.05,
+    open: 2499.0,
+    high: 2505.0,
+    low: 2495.0,
+    previousClose: 2499.18,
+    volume: 15420,
+    amount: 38562960,
+    bidPrice: 2500.0,
+    bidQty: 1200,
+    askPrice: 2500.5,
+    askQty: 800,
+    spread: 0.5,
+    referencePrice: 2499.18,
+    lastTradeTime: "10:42:15",
+    flag: "green",
+  },
+  {
+    id: 3,
+    orderbook: "QAECOCO111NOV11",
+    description: "INSTRUMENTO DE PRUEBAS # 4 DE ECOPETROL COLOMBIA PARA 10 DE NOVIEMBRE",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+1",
+    country: "CO",
+    currency: "USD",
+    last: null,
+    netChange: null,
+    changePercent: -0.02,
+    open: null,
+    high: null,
+    low: null,
+    previousClose: 2000,
+    volume: null,
+    amount: null,
+    bidPrice: null,
+    bidQty: null,
+    askPrice: null,
+    askQty: null,
+    spread: 10,
+    referencePrice: 2000,
+    lastTradeTime: null,
+    flag: "none",
+  },
+  {
+    id: 4,
+    orderbook: "ENKA",
+    description: "ENKA DE COLOMBIA SA",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+2",
+    country: "CO",
+    currency: "COP",
+    last: 2500.4,
+    netChange: 5,
+    changePercent: 0.2,
+    open: 2495.4,
+    high: 2510.0,
+    low: 2490.0,
+    previousClose: 2495.4,
+    volume: 4200,
+    amount: 10501680,
+    bidPrice: 2500.0,
+    bidQty: 300,
+    askPrice: 2501.0,
+    askQty: 450,
+    spread: 1,
+    referencePrice: 2495.4,
+    lastTradeTime: "11:12:03",
+    flag: "none",
+  },
+  {
+    id: 5,
+    orderbook: "ETB",
+    description: "EMPRESA DE TELECOMUNICACIONES DE BOGOTA SA ESP",
+    status: "ENABLED",
+    session: "Subasta",
+    settlement: "T+2",
+    country: "CO",
+    currency: "COP",
+    last: 485.62,
+    netChange: -2.38,
+    changePercent: -0.49,
+    open: 488.0,
+    high: 489.5,
+    low: 484.0,
+    previousClose: 488.0,
+    volume: 92100,
+    amount: 44735382,
+    bidPrice: 485.0,
+    bidQty: 2100,
+    askPrice: 486.0,
+    askQty: 1800,
+    spread: 1,
+    referencePrice: 488.0,
+    lastTradeTime: "10:58:47",
+    flag: "yellow",
+  },
+  {
+    id: 6,
+    orderbook: "PROTECCION",
+    description: "ADMINISTRADORA DE FONDOS DE PENSIONES Y CES PROTECCION",
+    status: "ENABLED",
+    session: "Subasta",
+    settlement: "T+2",
+    country: "CO",
+    currency: "COP",
+    last: 12300,
+    netChange: 20,
+    changePercent: 0.16,
+    open: 12280,
+    high: 12350,
+    low: 12250,
+    previousClose: 12280,
+    volume: 1850,
+    amount: 22755000,
+    bidPrice: 12290,
+    bidQty: 60,
+    askPrice: 12310,
+    askQty: 40,
+    spread: 20,
+    referencePrice: 12280,
+    lastTradeTime: "09:45:12",
+    flag: "none",
+  },
+  {
+    id: 7,
+    orderbook: "BHI",
+    description: "BAC HOLDING INTERNATIONAL CORP C10",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+2",
+    country: "CO",
+    currency: "COP",
+    last: 2500,
+    netChange: 12,
+    changePercent: 0.48,
+    open: 2480,
+    high: 2510,
+    low: 2475,
+    previousClose: 2488,
+    volume: 6700,
+    amount: 16750000,
+    bidPrice: 2498,
+    bidQty: 900,
+    askPrice: 2502,
+    askQty: 700,
+    spread: 85,
+    referencePrice: 2488,
+    lastTradeTime: "11:20:31",
+    flag: "none",
+  },
+  {
+    id: 8,
+    orderbook: "COPEC",
+    description: "EMPRESAS COPEC SA",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+2",
+    country: "CL",
+    currency: "CLP",
+    last: 6750,
+    netChange: 74,
+    changePercent: 1.11,
+    open: 6700,
+    high: 6780,
+    low: 6690,
+    previousClose: 6676,
+    volume: 235000,
+    amount: 1586250000,
+    bidPrice: 6749,
+    bidQty: 500,
+    askPrice: 6751,
+    askQty: 620,
+    spread: 2,
+    referencePrice: 6676,
+    lastTradeTime: "11:05:02",
+    flag: "none",
+  },
+  {
+    id: 9,
+    orderbook: "CREDICORP",
+    description: "CREDICORP LTD",
+    status: "ENABLED",
+    session: "Continuo",
+    settlement: "T+2",
+    country: "PE",
+    currency: "USD",
+    last: 168.3,
+    netChange: 1.75,
+    changePercent: 1.05,
+    open: 166.8,
+    high: 169.1,
+    low: 166.5,
+    previousClose: 166.55,
+    volume: 8400,
+    amount: 1413720,
+    bidPrice: 168.2,
+    bidQty: 100,
+    askPrice: 168.4,
+    askQty: 150,
+    spread: 0.2,
+    referencePrice: 166.55,
+    lastTradeTime: "10:58:40",
+    flag: "green",
+  },
+  {
+    id: 10,
+    orderbook: "BSANTANDER",
+    description: "BANCO SANTANDER CHILE",
+    status: "DISABLED",
+    session: "Suspendido",
+    settlement: "T+2",
+    country: "CL",
+    currency: "CLP",
+    last: null,
+    netChange: null,
+    changePercent: null,
+    open: null,
+    high: null,
+    low: null,
+    previousClose: 38.9,
+    volume: null,
+    amount: null,
+    bidPrice: null,
+    bidQty: null,
+    askPrice: null,
+    askQty: null,
+    spread: null,
+    referencePrice: 38.9,
+    lastTradeTime: null,
+    flag: "red",
+  },
+];
 
 export interface Candle {
   time: string;

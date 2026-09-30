@@ -56,4 +56,9 @@ export const widgetPathMap: Record<string, WidgetId> = {
   "/mercado/rankings": "rankings",
   "/area-negociacion/ingreso-de-ordenes": "orderEntry",
   "/area-negociacion/mensajes": "orderMessages",
+  "/area-negociacion/libro-de-ordenes": "orderBook",
+  "/area-negociacion/watchlist-multimercado": "multiMarketWatchlist",
+  "/area-negociacion/ultimas-transacciones": "lastTransactions",
+  "/area-negociacion/administracion-de-ordenes": "orderManagement",
+  "/area-negociacion/detalle": "detail",
 };

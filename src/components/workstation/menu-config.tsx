@@ -1,13 +1,14 @@
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import TuneIcon from "@mui/icons-material/Tune";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import ListAltIcon from "@mui/icons-material/ListAlt";
 import LeaderboardOutlinedIcon from "@mui/icons-material/LeaderboardOutlined";
+import PublicIcon from "@mui/icons-material/Public";
+import HistoryIcon from "@mui/icons-material/History";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import ArticleIcon from "@mui/icons-material/Article";
 import type { IPage } from "@nuam/common-fe-lib-components";
 
 export const menuPages: IPage[] = [
@@ -22,17 +23,32 @@ export const menuPages: IPage[] = [
         icon: <SwapVertIcon fontSize="small" />,
       },
       {
-        name: "Registro de órdenes",
-        path: "registro-de-ordenes",
-        icon: <ReceiptLongIcon fontSize="small" />,
+        name: "Libro de órdenes",
+        path: "libro-de-ordenes",
+        icon: <MenuBookIcon fontSize="small" />,
       },
       {
-        name: "Operaciones",
-        path: "operaciones",
-        icon: <SwapHorizIcon fontSize="small" />,
+        name: "Watchlist multimercado",
+        path: "watchlist-multimercado",
+        icon: <PublicIcon fontSize="small" />,
       },
       {
-        name: "Mensajes",
+        name: "Últimas transacciones",
+        path: "ultimas-transacciones",
+        icon: <HistoryIcon fontSize="small" />,
+      },
+      {
+        name: "Administración de órdenes",
+        path: "administracion-de-ordenes",
+        icon: <AssignmentIcon fontSize="small" />,
+      },
+      {
+        name: "Detalle",
+        path: "detalle",
+        icon: <ArticleIcon fontSize="small" />,
+      },
+      {
+        name: "Mensajes de órdenes",
         path: "mensajes",
         icon: <NotificationsNoneIcon fontSize="small" />,
       },
@@ -57,11 +73,6 @@ export const menuPages: IPage[] = [
         name: "Watchlist",
         path: "watchlist",
         icon: <StarBorderIcon fontSize="small" />,
-      },
-      {
-        name: "Todas las operaciones",
-        path: "todas-las-operaciones",
-        icon: <ListAltIcon fontSize="small" />,
       },
       {
         name: "Rankings",
