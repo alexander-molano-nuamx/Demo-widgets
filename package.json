@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@bvcco/bvc-digital-package-library": "^1.4.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.4.0",
@@ -30,16 +29,11 @@
     "ag-grid-enterprise": "^36.2.0",
     "ag-grid-react": "^36.2.0",
     "dayjs": "^1.11.23",
-    "framer-motion": "1.11.1",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-grid-layout": "^2.2.4",
-    "react-perfect-scrollbar": "^1.5.8",
-    "react-router": "^8.3.1",
-    "react-select": "^5.7.2",
-    "react-styled-flexboxgrid": "^3.2.1",
-    "styled-components": "^5.3.6"
+    "react-router": "^8.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -48,11 +42,5 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "typescript": "^5"
-  },
-  "overrides": {
-    "@bvcco/bvc-digital-package-library": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    }
   }
 }

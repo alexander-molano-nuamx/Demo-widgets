@@ -16,12 +16,6 @@ const flows = [
       "El dashboard de trading actual, construido con @nuam/common-fe-lib-components + MUI.",
     href: "/workstation",
   },
-  {
-    title: "Workstation (Librería BVC)",
-    description:
-      "La misma disposición de paneles y datos, reconstruida con bvc-digital-package-library.",
-    href: "/workstation-library",
-  },
 ];
 
 export function ChooserScreen() {

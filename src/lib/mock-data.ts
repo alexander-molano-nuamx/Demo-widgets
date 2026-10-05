@@ -27,32 +27,6 @@ export const tickerItems: TickerItem[] = [
   { symbol: "COLCAP", price: 1345.62, changePercent: -0.21 },
 ];
 
-/** @deprecated Legacy placeholder rows, still used by the workstation-library variant. */
-export interface WatchlistRow {
-  id: number;
-  fileId: string;
-  name: string;
-  category: string;
-  market: string;
-  segment: string;
-  currency: string;
-  country: string;
-}
-
-/** @deprecated Legacy placeholder rows, still used by the workstation-library variant. */
-export const watchlistRows: WatchlistRow[] = Array.from({ length: 18 }).map(
-  (_, index) => ({
-    id: index + 1,
-    fileId: "10683190UD",
-    name: "87182",
-    category: "BGF World financ...",
-    market: "Equity",
-    segment: "Mercado Global",
-    currency: "Global USD CL",
-    country: "USD",
-  }),
-);
-
 export type WatchlistSession =
   | "Pre-apertura"
   | "Subasta"
