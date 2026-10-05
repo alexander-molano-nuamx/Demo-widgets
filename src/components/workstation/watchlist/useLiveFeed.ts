@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
-import type { GridApiPro } from "@mui/x-data-grid-pro";
 import { evaluateFormula, parseFormula, type FormulaNode } from "@/lib/watchlist/formula";
 import type { Instrument, ListAlert, PriceAlert } from "@/lib/watchlist/model";
 import { roundPrice } from "@/lib/watchlist/universe";
@@ -10,8 +9,17 @@ import { DEFAULT_TICKS_PER_SECOND } from "@/lib/watchlist/benchmark";
 const TICK_INTERVAL_MS = 250;
 const INTRADAY_POINTS = 30;
 
+/**
+ * Where ticks are delivered. Each grid implementation provides one: MUI X → `apiRef.updateRows`,
+ * AG Grid → `api.applyTransactionAsync`. It must ignore ids the grid does not hold and do
+ * nothing while the grid is unmounted (the panel unmounts it while minimized).
+ */
+export interface TickSink {
+  push(updates: Instrument[]): void;
+}
+
 interface LiveFeedOptions {
-  apiRef: RefObject<GridApiPro | null>;
+  sinkRef: RefObject<TickSink | null>;
   instruments: Map<number, Instrument>;
   byOrderbook: Map<string, Instrument>;
   /** Ids currently loaded in the grid; only these are ticked and pushed to it. */
@@ -64,7 +72,7 @@ function tick(inst: Instrument, now: number) {
  * touched rows re-render and the React tree above the grid is never invalidated by a tick.
  */
 export function useLiveFeed({
-  apiRef,
+  sinkRef,
   instruments,
   byOrderbook,
   activeIdsRef,
@@ -86,7 +94,6 @@ export function useLiveFeed({
   useEffect(() => {
     if (!enabled) return;
     const interval = window.setInterval(() => {
-      const api = apiRef.current;
       const ids = activeIdsRef.current;
       if (ids.length === 0) return;
 
@@ -145,16 +152,12 @@ export function useLiveFeed({
         }
       }
 
-      // The panel unmounts the grid while minimized and re-mounts it when maximizing. Data and
-      // alerts keep updating, but a stale api instance throws on updateRows, so skip the push.
-      if (!api?.rootElementRef?.current?.isConnected) return;
-      // Never pass ids the grid does not hold: updateRows would insert them as new rows.
-      const updates = Array.from(touched)
-        .filter((id) => api.getRow(id) != null)
-        .map((id) => ({ ...instruments.get(id)! }));
+      const sink = sinkRef.current;
+      if (!sink) return;
+      const updates = Array.from(touched).map((id) => ({ ...instruments.get(id)! }));
       if (updates.length === 0) return;
       const started = measure ? performance.now() : 0;
-      api.updateRows(updates);
+      sink.push(updates);
       const counters = measure ? window.__wlBench : undefined;
       if (counters) {
         const elapsed = performance.now() - started;
@@ -166,5 +169,5 @@ export function useLiveFeed({
       }
     }, TICK_INTERVAL_MS);
     return () => window.clearInterval(interval);
-  }, [enabled, ticksPerSecond, measure, apiRef, instruments, byOrderbook, activeIdsRef, priceAlertsRef, listAlertRef]);
+  }, [enabled, ticksPerSecond, measure, sinkRef, instruments, byOrderbook, activeIdsRef, priceAlertsRef, listAlertRef]);
 }

@@ -75,6 +75,11 @@ export const menuPages: IPage[] = [
         icon: <StarBorderIcon fontSize="small" />,
       },
       {
+        name: "Watchlist (AG Grid)",
+        path: "watchlist-ag-grid",
+        icon: <StarBorderIcon fontSize="small" />,
+      },
+      {
         name: "Rankings",
         path: "rankings",
         icon: <LeaderboardOutlinedIcon fontSize="small" />,

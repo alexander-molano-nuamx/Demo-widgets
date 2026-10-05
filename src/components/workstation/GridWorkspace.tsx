@@ -10,6 +10,7 @@ import RestoreIcon from "@mui/icons-material/SettingsBackupRestore";
 import { Typography } from "@nuam/common-fe-lib-components";
 import { widgetMeta, type WidgetId } from "@/lib/widget-registry";
 import { WatchlistPanel } from "./WatchlistPanel";
+import { AgWatchlistPanel } from "./AgWatchlistPanel";
 import { ChartPanel } from "./panels/ChartPanel";
 import { MarketDepthPanel } from "./panels/MarketDepthPanel";
 import { RankingsPanel } from "./panels/RankingsPanel";
@@ -29,6 +30,7 @@ const ROW_HEIGHT = 26;
 
 const renderers: Record<WidgetId, (controls: Required<PanelWindowControls> & { dragHandleClassName: string }) => ReactNode> = {
   watchlist: (controls) => <WatchlistPanel {...controls} />,
+  watchlistAg: (controls) => <AgWatchlistPanel {...controls} />,
   chart: (controls) => <ChartPanel {...controls} />,
   marketDepth: (controls) => <MarketDepthPanel {...controls} />,
   rankings: (controls) => <RankingsPanel {...controls} />,

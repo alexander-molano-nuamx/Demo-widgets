@@ -74,7 +74,7 @@ function QuoteCell({ row, side }: { row: WatchlistRow; side: "bid" | "ask" }) {
   );
 }
 
-function RowActions({ row }: { row: WatchlistRow }) {
+export function RowActions({ row }: { row: WatchlistRow }) {
   const { openTicket } = useWatchlistActions();
   const disabled = !row.hasPermission || row.status !== "ENABLED";
   return (
