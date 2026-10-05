@@ -1,0 +1,4 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "installCommand": "test -n \"$NPM_TOKEN_NUAM\" || { echo 'Falta la variable de entorno NPM_TOKEN_NUAM (token de lectura de npm.nuamexchange.com)'; exit 1; } && npm config set \"//npm.nuamexchange.com/:_authToken\" \"$NPM_TOKEN_NUAM\" --location=project && npm install"
+}
