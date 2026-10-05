@@ -37,7 +37,8 @@ export interface SyntheticDefinition {
 }
 
 export interface PersistedView {
-  columnVisibility: ColumnVisibility;
+  /** Missing in payloads migrated from a partial save; callers fall back to the default. */
+  columnVisibility?: ColumnVisibility;
   templates: ColumnTemplate[];
   layout?: unknown;
 }
@@ -66,15 +67,17 @@ interface PersistedWatchlistV1 extends Omit<PersistedWatchlist, "version" | "vie
 function migrate(raw: unknown): PersistedWatchlist | null {
   const data = raw as Partial<PersistedWatchlist> | Partial<PersistedWatchlistV1> | null;
   if (!data || !Array.isArray(data.lists)) return null;
-  if (data.version === STORAGE_VERSION) return data as PersistedWatchlist;
-  if (data.version === 1) {
+  if (data.version === STORAGE_VERSION && "view" in data && data.view) return data as PersistedWatchlist;
+  // v1 payloads, and v2-tagged payloads saved with the v1 shape (written while the app was
+  // hot-reloading between versions), carry the view fields at the top level.
+  if (data.version === 1 || data.version === STORAGE_VERSION) {
     const { columnVisibility, templates, gridState, ...rest } = data as PersistedWatchlistV1;
     return {
       ...rest,
       version: STORAGE_VERSION,
       view: {
         columnVisibility,
-        templates: templates.map(({ gridState: layout, ...t }) => ({ ...t, layout })),
+        templates: (templates ?? []).map(({ gridState: layout, ...t }) => ({ ...t, layout })),
         layout: gridState,
       },
     };
