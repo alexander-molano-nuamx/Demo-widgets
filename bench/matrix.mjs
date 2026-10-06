@@ -1,8 +1,9 @@
-// MUI X vs AG Grid watchlist benchmark matrix, against the production build on Vercel.
+// Watchlist benchmark matrix (MUI X Pro / Premium vs AG Grid Enterprise / Community), against the
+// production build on Vercel.
 // Drives the locally installed Chrome (headless) over CDP; no dependencies.
 //
 // Usage: node bench/matrix.mjs <chunk> [reps]
-//   chunk: desktop-500 | desktop-1000 | mobile | mobile-ticket | soak | smoke
+//   chunk: desktop-<500|1000>[-full|-core] | mobile[-500|-1000] | mobile-ticket | soak | smoke
 // Results are appended to $BENCH_RESULTS (default bench/results/current/) as matrix.jsonl
 // (resumable: finished runs are skipped). See bench/README.md.
 import { spawn } from "node:child_process";
@@ -15,6 +16,7 @@ const BASE = process.env.BENCH_BASE_URL ?? "https://demo-widgets-xmxp-green.verc
 const CHROME = process.env.CHROME_PATH ?? "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const PORT = 9336;
 const SEED = 7;
+const WIDGETS = (process.env.BENCH_WIDGETS ?? "mui,mui-premium,ag,ag-community").split(",");
 const chunk = process.argv[2] ?? "smoke";
 const REPS = Number(process.argv[3] ?? 5);
 const OUT_DIR = process.env.BENCH_RESULTS
@@ -35,19 +37,20 @@ function scenarios() {
   const list = [];
   const add = (device, size, tps, profile) => {
     for (let rep = 0; rep < REPS; rep += 1) {
-      // Alternate the order so neither widget always runs on a "warmer" machine.
-      const order = rep % 2 === 0 ? ["mui", "ag"] : ["ag", "mui"];
+      // Rotate the order each rep so no widget always runs first (or on a "warmer" machine).
+      const order = WIDGETS.map((_, i) => WIDGETS[(i + rep) % WIDGETS.length]);
       for (const widget of order) list.push({ device, size, tps, profile, widget, rep });
     }
   };
   if (chunk === "smoke") {
     add("desktop", 500, 100, "full");
   } else if (chunk.startsWith("desktop-")) {
-    const size = Number(chunk.split("-")[1]);
-    for (const tps of [25, 100, 400]) for (const profile of ["full", "core"]) add("desktop", size, tps, profile);
-  } else if (chunk === "mobile" || chunk === "mobile-ticket") {
-    // Cards are the same shared component in both widgets, so only the full profile applies.
-    for (const size of [500, 1000]) for (const tps of [25, 100, 400]) add("mobile", size, tps, "full");
+    const [, size, onlyProfile] = chunk.split("-");
+    for (const tps of [25, 100, 400]) for (const profile of ["full", "core"]) if (!onlyProfile || onlyProfile === profile) add("desktop", Number(size), tps, profile);
+  } else if (chunk.startsWith("mobile")) {
+    // Cards are the same shared component in every widget, so only the full profile applies.
+    const onlySize = Number(chunk.split("-")[1]) || null;
+    for (const size of [500, 1000]) for (const tps of [25, 100, 400]) if (!onlySize || onlySize === size) add("mobile", size, tps, "full");
   }
   return list;
 }
@@ -349,7 +352,7 @@ let cdp;
 try {
   cdp = await connect(await browserWs());
   if (chunk === "soak") {
-    for (const widget of ["mui", "ag"]) {
+    for (const widget of WIDGETS) {
       if (done.has(`soak|${widget}`)) continue;
       const r = await soak(cdp, widget);
       appendFileSync(OUT, JSON.stringify({ ...r, at: new Date().toISOString() }) + "\n");

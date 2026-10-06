@@ -9,12 +9,14 @@ import type { BenchWidget } from "@/lib/watchlist/benchmark";
 
 // Each panel is its own chunk, so a benchmark run downloads only the grid it measures.
 const panels: Record<BenchWidget, React.ComponentType> = {
-  mui: dynamic(() => import("./WatchlistPanel").then((mod) => mod.WatchlistPanel), { ssr: false }),
-  ag: dynamic(() => import("./AgWatchlistPanel").then((mod) => mod.AgWatchlistPanel), { ssr: false }),
+  mui: dynamic(() => import("./WatchlistProPanel").then((mod) => mod.WatchlistProPanel), { ssr: false }),
+  "mui-premium": dynamic(() => import("./WatchlistPremiumPanel").then((mod) => mod.WatchlistPremiumPanel), { ssr: false }),
+  ag: dynamic(() => import("./AgWatchlistEnterprisePanel").then((mod) => mod.AgWatchlistEnterprisePanel), { ssr: false }),
+  "ag-community": dynamic(() => import("./AgWatchlistCommunityPanel").then((mod) => mod.AgWatchlistCommunityPanel), { ssr: false }),
 };
 
 /**
- * Isolated benchmark page (`/workstation?bench=N&widget=mui|ag`): a single watchlist filling the
+ * Isolated benchmark page (`/workstation?bench=N&widget=mui|mui-premium|ag|ag-community`): a single watchlist filling the
  * viewport, without the rest of the workspace competing for the main thread.
  */
 export function BenchHarness({ widget }: { widget: BenchWidget }) {

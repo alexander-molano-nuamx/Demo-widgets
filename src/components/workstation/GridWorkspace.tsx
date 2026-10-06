@@ -9,8 +9,10 @@ import { Box, Chip, Stack } from "@mui/material";
 import RestoreIcon from "@mui/icons-material/SettingsBackupRestore";
 import { Typography } from "@nuam/common-fe-lib-components";
 import { widgetMeta, type WidgetId } from "@/lib/widget-registry";
-import { WatchlistPanel } from "./WatchlistPanel";
-import { AgWatchlistPanel } from "./AgWatchlistPanel";
+import { WatchlistProPanel } from "./WatchlistProPanel";
+import { WatchlistPremiumPanel } from "./WatchlistPremiumPanel";
+import { AgWatchlistEnterprisePanel } from "./AgWatchlistEnterprisePanel";
+import { AgWatchlistCommunityPanel } from "./AgWatchlistCommunityPanel";
 import { ChartPanel } from "./panels/ChartPanel";
 import { MarketDepthPanel } from "./panels/MarketDepthPanel";
 import { RankingsPanel } from "./panels/RankingsPanel";
@@ -29,8 +31,10 @@ const ReactGridLayout = WidthProvider(GridLayout);
 const ROW_HEIGHT = 26;
 
 const renderers: Record<WidgetId, (controls: Required<PanelWindowControls> & { dragHandleClassName: string }) => ReactNode> = {
-  watchlist: (controls) => <WatchlistPanel {...controls} />,
-  watchlistAg: (controls) => <AgWatchlistPanel {...controls} />,
+  watchlist: (controls) => <WatchlistProPanel {...controls} />,
+  watchlistPremium: (controls) => <WatchlistPremiumPanel {...controls} />,
+  watchlistAg: (controls) => <AgWatchlistEnterprisePanel {...controls} />,
+  watchlistAgCommunity: (controls) => <AgWatchlistCommunityPanel {...controls} />,
   chart: (controls) => <ChartPanel {...controls} />,
   marketDepth: (controls) => <MarketDepthPanel {...controls} />,
   rankings: (controls) => <RankingsPanel {...controls} />,

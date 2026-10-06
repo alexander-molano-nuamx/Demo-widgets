@@ -70,13 +70,23 @@ export const menuPages: IPage[] = [
         icon: <TuneIcon fontSize="small" />,
       },
       {
-        name: "Watchlist",
+        name: "Watchlist (MUI X Pro)",
         path: "watchlist",
         icon: <StarBorderIcon fontSize="small" />,
       },
       {
-        name: "Watchlist (AG Grid)",
+        name: "Watchlist (MUI X Premium)",
+        path: "watchlist-premium",
+        icon: <StarBorderIcon fontSize="small" />,
+      },
+      {
+        name: "Watchlist (AG Grid Enterprise)",
         path: "watchlist-ag-grid",
+        icon: <StarBorderIcon fontSize="small" />,
+      },
+      {
+        name: "Watchlist (AG Grid Community)",
+        path: "watchlist-ag-grid-community",
         icon: <StarBorderIcon fontSize="small" />,
       },
       {

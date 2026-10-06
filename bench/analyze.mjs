@@ -12,6 +12,8 @@ const rows = readFileSync(new URL("./matrix.jsonl", DIR), "utf8").trim().split("
 const ticketFile = new URL("./mobile-ticket.jsonl", DIR);
 const mobileTicket = existsSync(ticketFile) ? readFileSync(ticketFile, "utf8").trim().split("\n").map(JSON.parse).filter((r) => r.ok) : [];
 const runs = rows.filter((r) => !r.soak);
+// Widgets present in the results, in canonical order (2-way baseline or 4-way edition matrix).
+const WIDGETS = ["mui", "mui-premium", "ag", "ag-community"].filter((w) => rows.some((r) => r.widget === w));
 const soak = rows.filter((r) => r.soak && r.ok);
 
 const median = (xs) => {
@@ -30,9 +32,14 @@ const inter = (r, label) => r.interactions?.find((i) => i.label === label && i.o
 const groups = new Map();
 for (const r of runs) {
   const key = [r.device, r.size, r.tps, r.profile].join("|");
-  if (!groups.has(key)) groups.set(key, { device: r.device, size: r.size, tps: r.tps, profile: r.profile, mui: [], ag: [], failed: { mui: 0, ag: 0 } });
+  if (!groups.has(key))
+    groups.set(key, {
+      device: r.device, size: r.size, tps: r.tps, profile: r.profile,
+      runs: Object.fromEntries(WIDGETS.map((w) => [w, []])),
+      failed: Object.fromEntries(WIDGETS.map((w) => [w, 0])),
+    });
   const g = groups.get(key);
-  if (r.ok) g[r.widget].push(r);
+  if (r.ok) g.runs[r.widget].push(r);
   else g.failed[r.widget] += 1;
 }
 
@@ -78,14 +85,14 @@ const scenarios = [...groups.values()].map((g) => {
     domNodes: metric(list, (r) => r.domNodes),
     exceptions: list.reduce((a, r) => a + (r.exceptions?.length ?? 0), 0),
   });
-  return { device: g.device, size: g.size, tps: g.tps, profile: g.profile, failed: g.failed, mui: per(g.mui), ag: per(g.ag) };
+  return { device: g.device, size: g.size, tps: g.tps, profile: g.profile, failed: g.failed, ...Object.fromEntries(WIDGETS.map((w) => [w, per(g.runs[w])])) };
 });
 
-// "Elegible" ticks: both widgets get the same seeded stream, so the best observed rate across
+// "Elegible" ticks: every widget gets the same seeded stream, so the best observed rate across
 // widgets in a scenario approximates the deliverable rate (closed/suspended/no-permission skipped).
 for (const s of scenarios) {
-  const eligible = Math.max(s.mui.ticksPerSec.median ?? 0, s.ag.ticksPerSec.median ?? 0, 0);
-  for (const w of ["mui", "ag"]) {
+  const eligible = Math.max(...WIDGETS.map((w) => s[w].ticksPerSec.median ?? 0), 0);
+  for (const w of WIDGETS) {
     const m = s[w];
     m.ticksRatio = eligible ? +((m.ticksPerSec.median ?? 0) / eligible).toFixed(3) : null;
     m.pass = {
@@ -114,6 +121,7 @@ const soakSummary = soak.map((r) => {
 });
 
 const summary = {
+  widgets: WIDGETS,
   generatedAt: new Date().toISOString(),
   totals: {
     runs: runs.length,
@@ -133,9 +141,11 @@ writeFileSync(new URL("./summary.json", DIR), JSON.stringify(summary, null, 2));
 // Console table for a quick read.
 const fmt = (m) => (m?.median == null ? "—" : String(m.median));
 console.log(`runs ok ${summary.totals.ok}/${summary.totals.runs}`);
-console.log("device  size tps prof | fps mui/ag | p95 mui/ag | busy% mui/ag | script mui/ag | scrollFps mui/ag | ticket mui/ag | sort mui/ag | filter mui/ag");
+const cols = ["fps", "p95", "mainBusyPct", "scriptMsPerSec", "scrollFps", "openTicketMs", "sortMs", "filterMs"];
+console.log(`device  size tps prof | ${cols.map((c) => `${c} ${WIDGETS.join("/")}`).join(" | ")}`);
 for (const s of summary.scenarios) {
-  console.log(`${s.device.padEnd(7)} ${String(s.size).padStart(4)} ${String(s.tps).padStart(3)} ${s.profile.padEnd(4)} | ${fmt(s.mui.fps)}/${fmt(s.ag.fps)} | ${fmt(s.mui.p95)}/${fmt(s.ag.p95)} | ${fmt(s.mui.mainBusyPct)}/${fmt(s.ag.mainBusyPct)} | ${fmt(s.mui.scriptMsPerSec)}/${fmt(s.ag.scriptMsPerSec)} | ${fmt(s.mui.scrollFps)}/${fmt(s.ag.scrollFps)} | ${fmt(s.mui.openTicketMs)}/${fmt(s.ag.openTicketMs)} | ${fmt(s.mui.sortMs)}/${fmt(s.ag.sortMs)} | ${fmt(s.mui.filterMs)}/${fmt(s.ag.filterMs)}`);
+  const cells = cols.map((c) => WIDGETS.map((w) => fmt(s[w][c])).join("/"));
+  console.log(`${s.device.padEnd(7)} ${String(s.size).padStart(4)} ${String(s.tps).padStart(3)} ${s.profile.padEnd(4)} | ${cells.join(" | ")}`);
 }
 for (const s of soakSummary) console.log(`soak ${s.widget}: heap ${s.heapStartMB}→${s.heapEndMB} MB (${s.heapGrowthPct}%), nodes ${s.nodesStart}→${s.nodesEnd} (${s.nodesGrowthPct}%)`);
 if (summary.errors.length) console.log("errores:", summary.errors.slice(0, 10));

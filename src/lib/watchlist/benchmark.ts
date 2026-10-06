@@ -3,14 +3,16 @@
  * Enabled only through the URL: /workstation?bench=1000&tps=100&widget=ag&profile=core&seed=7
  *   bench    number of instruments in a read-only "Benchmark" list (100–5000)
  *   tps      simulated ticks per second (1–5000); default is the normal demo rate
- *   widget   `mui` | `ag`: render only that watchlist, full screen, without the rest of the
- *            workspace, so the two grids are never measured competing for the main thread
+ *   widget   `mui` (MUI X Pro) | `mui-premium` | `ag` (AG Grid Enterprise) | `ag-community`:
+ *            render only that watchlist, full screen, without the rest of the workspace, so the
+ *            grids are never measured competing for the main thread
  *   profile  `full` (default, every capability) | `core` (hides sparkline, badges and buttons,
  *            i.e. the React cell renderers, to measure the grid engine itself)
- *   seed     seed of the tick generator (default 1): both widgets receive the same tick stream
+ *   seed     seed of the tick generator (default 1): all widgets receive the same tick stream
  * In bench mode nothing is persisted, and each feed exposes counters on `window.__wlBench[widget]`.
  */
-export type BenchWidget = "mui" | "ag";
+export const BENCH_WIDGETS = ["mui", "mui-premium", "ag", "ag-community"] as const;
+export type BenchWidget = (typeof BENCH_WIDGETS)[number];
 export type BenchProfile = "full" | "core";
 
 export interface BenchConfig {
@@ -54,7 +56,7 @@ export function readBenchConfig(): BenchConfig | null {
   return {
     size,
     ticksPerSecond: clampInt(params.get("tps"), 1, 5000) ?? DEFAULT_TICKS_PER_SECOND,
-    widget: widget === "mui" || widget === "ag" ? widget : null,
+    widget: BENCH_WIDGETS.find((w) => w === widget) ?? null,
     profile: params.get("profile") === "core" ? "core" : "full",
     seed: clampInt(params.get("seed"), 1, 2 ** 31 - 1) ?? 1,
   };

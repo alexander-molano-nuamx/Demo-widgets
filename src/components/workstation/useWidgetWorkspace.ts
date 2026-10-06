@@ -2,7 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import type { Layout } from "react-grid-layout/legacy";
-import { defaultLayout, widgetMeta, type WidgetId } from "@/lib/widget-registry";
+import { defaultLayout, defaultOpenIds, widgetMeta, type WidgetId } from "@/lib/widget-registry";
 
 const COLLAPSED_H = 2;
 
@@ -10,7 +10,10 @@ export function useWidgetWorkspace() {
   const [layout, setLayout] = useState<Layout>(defaultLayout);
   const [minimizedIds, setMinimizedIds] = useState<Set<WidgetId>>(new Set());
   const [maximizedId, setMaximizedId] = useState<WidgetId | null>(null);
-  const [closedIds, setClosedIds] = useState<Set<WidgetId>>(new Set());
+  // Only the watchlists start open; the other widgets are reopened from the drawer.
+  const [closedIds, setClosedIds] = useState<Set<WidgetId>>(
+    () => new Set(widgetMeta.map((w) => w.id).filter((id) => !defaultOpenIds.includes(id))),
+  );
   const restoreHeights = useRef<Map<WidgetId, number>>(new Map());
 
   const handleLayoutChange = useCallback((newLayout: Layout) => {

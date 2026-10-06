@@ -1,7 +1,5 @@
 "use client";
 
-import "@/lib/agGrid";
-
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { Box, useColorScheme } from "@mui/material";
 import { AgGridReact, type CustomCellRendererProps } from "ag-grid-react";
@@ -20,6 +18,7 @@ import {
   type GridApi,
   type GridState,
   type MenuItemDef,
+  type Module,
   type RowClassParams,
   type RowDragEndEvent,
   type ValueFormatterParams,
@@ -35,11 +34,29 @@ import { WatchlistCard } from "./watchlist/WatchlistCard";
 import { WatchlistShell } from "./watchlist/WatchlistShell";
 import { matchesRule, useWatchlistController, type GridAdapter } from "./watchlist/useWatchlistController";
 
+export type AgEdition = "enterprise" | "community";
+
 interface AgWatchlistPanelProps extends PanelWindowControls {
   dragHandleClassName?: string;
+  edition: AgEdition;
+  /** Modules for this grid instance only (see lib/agGridEnterprise.ts / lib/agGridCommunity.ts). */
+  modules: Module[];
 }
 
-const STORAGE_KEY = "nuam.tws.watchlist-ag";
+/**
+ * Community uses only what AG Grid Community ships: no row grouping, context menu, side bar,
+ * set filter, sparklines, calculated columns or clipboard. The shared chrome (lists, search,
+ * dialogs, ticket) is not part of the grid and stays the same in both editions.
+ */
+const EDITION: Record<AgEdition, { storageKey: string; benchId: "ag" | "ag-community"; title: string; gridLabel: string }> = {
+  enterprise: { storageKey: "nuam.tws.watchlist-ag", benchId: "ag", title: "Watchlist (AG Grid Enterprise)", gridLabel: "Watchlist AG Grid" },
+  community: {
+    storageKey: "nuam.tws.watchlist-ag-community",
+    benchId: "ag-community",
+    title: "Watchlist (AG Grid Community)",
+    gridLabel: "Watchlist AG Grid Community",
+  },
+};
 const defaultVisibility = builtInTemplates.find((t) => t.id === DEFAULT_TEMPLATE_ID)!.visibility;
 const rowHeightByDensity = { compact: 21, standard: 30, comfortable: 39 } as const;
 /** Layout keys persisted by this widget; visibility is owned by the shared controller. */
@@ -88,12 +105,15 @@ interface BuildOptions {
   rules: ConditionalRule[];
   flash: boolean;
   dark: boolean;
-  grouped: boolean;
-  readOnly: boolean;
+  enterprise: boolean;
   dragOutPayload: (row: WatchlistRow) => InstrumentDragPayloadV1;
+  /** Whether the reorder handle is active (Community has no auto group column to carry it). */
+  rowDragEnabled: boolean;
 }
 
-function buildColumnDefs({ rules, flash, dark, grouped, dragOutPayload }: BuildOptions): (ColDef<WatchlistRow> | ColGroupDef<WatchlistRow>)[] {
+function buildColumnDefs({ rules, flash, dark, enterprise, dragOutPayload, rowDragEnabled }: BuildOptions): (ColDef<WatchlistRow> | ColGroupDef<WatchlistRow>)[] {
+  // The set filter is Enterprise; Community falls back to its native text filter.
+  const listFilter = enterprise ? "agSetColumnFilter" : "agTextColumnFilter";
   // Conditional formatting rules (UI-09) become native cellClassRules per field.
   const ruleClasses = (field: string) =>
     Object.fromEntries(
@@ -137,8 +157,22 @@ function buildColumnDefs({ rules, flash, dark, grouped, dragOutPayload }: BuildO
       },
       headerTooltip: "Arrastrar a otra lista o widget",
     },
-    { field: "flag", headerName: "Marca", headerComponentParams: { displayName: "" }, width: 40, pinned: "left", cellRenderer: FlagRenderer, sortable: false, filter: "agSetColumnFilter" },
-    { field: "section", headerName: "Sección", rowGroup: grouped, hide: true, enableRowGroup: true },
+    { field: "flag", headerName: "Marca", headerComponentParams: { displayName: "" }, width: 40, pinned: "left", cellRenderer: FlagRenderer, sortable: false, filter: listFilter },
+    // Enterprise groups by section (WL-04). Community has no row grouping: the list stays flat.
+    enterprise ? { field: "section", headerName: "Sección", rowGroup: true, hide: true, enableRowGroup: true } : { field: "section", headerName: "Sección", hide: true },
+    ...(enterprise
+      ? []
+      : [
+          {
+            field: "orderbook",
+            headerName: "Nemotécnico",
+            pinned: "left",
+            width: 150,
+            cellClass: "wl-strong",
+            filter: "agTextColumnFilter",
+            rowDrag: () => rowDragEnabled,
+          } satisfies ColDef<WatchlistRow>,
+        ]),
     {
       headerName: GROUP_LABELS.instrument,
       groupId: "instrument",
@@ -146,18 +180,18 @@ function buildColumnDefs({ rules, flash, dark, grouped, dragOutPayload }: BuildO
         { field: "alert", headerName: "Alerta", width: 56, cellRenderer: AlertRenderer, sortable: false },
         { field: "events", headerName: "Eventos", width: 70, cellRenderer: EventsRenderer, sortable: false, filter: false, cellDataType: false },
         { field: "description", headerName: "Descripción", flex: 1, minWidth: 200, filter: "agTextColumnFilter", tooltipField: "description" },
-        { field: "assetClass", headerName: "Clase", width: 70, filter: "agSetColumnFilter" },
+        { field: "assetClass", headerName: "Clase", width: 70, filter: listFilter },
         {
           field: "status",
           headerName: "Estado",
           width: 92,
           valueFormatter: (p) => (p.value === "ENABLED" ? "Habilitado" : p.value ? "Deshab." : ""),
           cellClassRules: { "wl-pos": (p) => p.value === "ENABLED" },
-          filter: "agSetColumnFilter",
+          filter: listFilter,
         },
-        { field: "session", headerName: "Sesión", width: 108, cellRenderer: SessionRenderer, filter: "agSetColumnFilter" },
-        { field: "quality", headerName: "Dato", width: 82, cellRenderer: QualityRenderer, headerTooltip: "Calidad del dato: tiempo real, diferido o desactualizado", filter: "agSetColumnFilter" },
-        { field: "currency", headerName: "Moneda", width: 72, filter: "agSetColumnFilter" },
+        { field: "session", headerName: "Sesión", width: 108, cellRenderer: SessionRenderer, filter: listFilter },
+        { field: "quality", headerName: "Dato", width: 82, cellRenderer: QualityRenderer, headerTooltip: "Calidad del dato: tiempo real, diferido o desactualizado", filter: listFilter },
+        { field: "currency", headerName: "Moneda", width: 72, filter: listFilter },
         { field: "settlement", headerName: "Liquidación", width: 90 },
       ],
     },
@@ -180,24 +214,29 @@ function buildColumnDefs({ rules, flash, dark, grouped, dragOutPayload }: BuildO
           valueFormatter: (p) => (p.data ? signedArrow(p.value, formatPercent(p.value, p.data.country)) : ""),
           cellClassRules: { ...ruleClasses("changePercent"), ...directionClass, ...tickClass },
         }),
-        {
-          field: "intraday",
-          headerName: "Intradía",
-          width: 90,
-          sortable: false,
-          filter: false,
-          cellDataType: false,
-          // Native Enterprise sparkline (UI-25); color by intraday direction.
-          cellRendererSelector: (p) => {
-            const data = p.data;
-            if (!data || !data.hasPermission || data.intraday.length < 2) return undefined;
-            const up = data.intraday[data.intraday.length - 1] >= data.intraday[0];
-            return {
-              component: "agSparklineCellRenderer",
-              params: { sparklineOptions: { type: "line", stroke: up ? stroke.up : stroke.down, strokeWidth: 1.5, padding: { top: 3, bottom: 3, left: 2, right: 2 } } },
-            };
-          },
-        },
+        // Native Enterprise sparkline (UI-25); Community has no sparkline, so the column is omitted.
+        ...(enterprise
+          ? [
+              {
+                field: "intraday",
+                headerName: "Intradía",
+                width: 90,
+                sortable: false,
+                filter: false,
+                cellDataType: false,
+                // Color by intraday direction.
+                cellRendererSelector: (p) => {
+                  const data = p.data;
+                  if (!data || !data.hasPermission || data.intraday.length < 2) return undefined;
+                  const up = data.intraday[data.intraday.length - 1] >= data.intraday[0];
+                  return {
+                    component: "agSparklineCellRenderer",
+                    params: { sparklineOptions: { type: "line", stroke: up ? stroke.up : stroke.down, strokeWidth: 1.5, padding: { top: 3, bottom: 3, left: 2, right: 2 } } },
+                  };
+                },
+              } satisfies ColDef<WatchlistRow>,
+            ]
+          : []),
         numeric("open", "Apertura", 92),
         numeric("high", "Máximo", 92),
         numeric("low", "Mínimo", 92),
@@ -262,17 +301,22 @@ function buildColumnDefs({ rules, flash, dark, grouped, dragOutPayload }: BuildO
   ];
 }
 
-/** Watchlist on AG Grid Enterprise. Same control plane and chrome as the MUI X watchlist. */
-export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchlistPanelProps) {
+/** Watchlist on AG Grid (Enterprise or Community). Same control plane and chrome as the MUI X watchlists. */
+export function AgWatchlistPanel({ dragHandleClassName, edition, modules, ...controls }: AgWatchlistPanelProps) {
+  const config = EDITION[edition];
+  const enterprise = edition === "enterprise";
   const adapterRef = useRef<GridAdapter | null>(null);
   const apiRef = useRef<GridApi<WatchlistRow> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wl = useWatchlistController({ storageKey: STORAGE_KEY, defaultVisibility, adapterRef, benchId: "ag" });
+  const wl = useWatchlistController({ storageKey: config.storageKey, defaultVisibility, adapterRef, benchId: config.benchId });
   const { rows, cards, readOnly, filtersActive, settings, actions, effectiveVisibility, layoutChanged, instruments } = wl;
   const { mode, systemMode } = useColorScheme();
   const dark = (mode === "system" ? systemMode : mode) === "dark";
   const [gridKey, setGridKey] = useState(0);
   const [sorted, setSorted] = useState(false);
+  // Community has no filters tool panel; "Filtros" shows its native floating filters instead.
+  const [floatingFilters, setFloatingFilters] = useState(false);
+  const rowDragEnabled = !readOnly && !filtersActive && !sorted;
 
   const live = useCallback(() => {
     const api = apiRef.current;
@@ -309,21 +353,33 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
       },
       openFilters: () => {
         const api = live();
+        if (!enterprise) {
+          setFloatingFilters((v) => !v);
+          return;
+        }
         api?.setSideBarVisible(true);
         api?.openToolPanel("filters");
       },
       openColumnsPanel: () => {
+        if (!enterprise) {
+          wl.notify("info", "AG Grid Community no incluye panel de columnas; usa las plantillas o el menú de cada columna");
+          return;
+        }
         const api = live();
         api?.setSideBarVisible(true);
         api?.openToolPanel("columns");
       },
       createCalculatedColumn: () => {
+        if (!enterprise) {
+          wl.notify("info", "Las columnas calculadas son una función de AG Grid Enterprise");
+          return;
+        }
         // AG Grid's native calculated-column editor (UI-21) lives in the column menu.
         live()?.showColumnMenu("last");
         wl.notify("info", "Elige \"Columna calculada\" en el menú de la columna");
       },
     }),
-    [live, wl],
+    [live, wl, enterprise],
   );
   useEffect(() => {
     adapterRef.current = adapter;
@@ -376,8 +432,8 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
       cards
         ? // Cards are full-width rows; a single flexible column keeps them as wide as the widget.
           [{ field: "orderbook" as const, flex: 1 }]
-        : buildColumnDefs({ rules: wl.rules, flash: settings.flashMs > 0, dark, grouped: true, readOnly, dragOutPayload }),
-    [wl.rules, settings.flashMs, dark, cards, readOnly, dragOutPayload],
+        : buildColumnDefs({ rules: wl.rules, flash: settings.flashMs > 0, dark, enterprise, dragOutPayload, rowDragEnabled }),
+    [wl.rules, settings.flashMs, dark, cards, enterprise, dragOutPayload, rowDragEnabled],
   );
 
   const theme = useMemo(
@@ -401,7 +457,8 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
   const onRowDragEnd = (e: RowDragEndEvent<WatchlistRow>) => {
     const movedIds = new Set(e.nodes.filter((n) => n.data).map((n) => n.data!.id));
     const over = e.overNode;
-    const targetSection = over ? (over.group ? (over.key ?? null) : (over.data?.section ?? null)) : undefined;
+    // Only grouped (Enterprise) rows can change section by dragging; Community just reorders.
+    const targetSection = enterprise && over ? (over.group ? (over.key ?? null) : (over.data?.section ?? null)) : undefined;
     const ordered: ListItem[] = [];
     e.api.forEachNode((node) => {
       if (!node.data) return;
@@ -460,7 +517,10 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
     const event = e.event as KeyboardEvent | null | undefined;
     const row = e.data;
     if (!event || !row || e.node.group || event.ctrlKey || event.metaKey || event.altKey) return;
-    const openMenu = () => e.api.showContextMenu({ rowNode: e.node, column: e.column, value: e.value, source: "api" });
+    // The context menu is Enterprise; in Community, Enter / Shift+F10 have no menu to open.
+    const openMenu = () => {
+      if (enterprise) e.api.showContextMenu({ rowNode: e.node, column: e.column, value: e.value, source: "api" });
+    };
     const key = event.shiftKey && event.key === "F10" ? "contextmenu" : event.key;
     if (wl.handleShortcut(row, key, openMenu)) event.preventDefault();
   };
@@ -475,11 +535,37 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
 
   // AG Grid has no aria-label prop; label the grid element itself (WL-40).
   useEffect(() => {
-    containerRef.current?.querySelector('[role="treegrid"], [role="grid"]')?.setAttribute("aria-label", `Watchlist AG Grid ${wl.activeList.name}`);
+    containerRef.current?.querySelector('[role="treegrid"], [role="grid"]')?.setAttribute("aria-label", `${config.gridLabel} ${wl.activeList.name}`);
   });
 
+  // Enterprise-only grid options are passed only to the Enterprise grid: AG Grid warns about
+  // options whose module is not registered on that instance.
+  const enterpriseProps = enterprise
+    ? {
+        // Grouping by section (WL-04); unsectioned instruments stay at the root.
+        groupDisplayType: "singleColumn" as const,
+        groupAllowUnbalanced: true,
+        groupDefaultExpanded: -1,
+        refreshAfterGroupEdit: true,
+        autoGroupColumnDef: {
+          headerName: "Nemotécnico",
+          field: "orderbook" as const,
+          pinned: "left" as const,
+          width: 170,
+          rowDrag: (p: { node: { group?: boolean } }) => rowDragEnabled && !p.node.group,
+          cellRendererParams: { suppressCount: false },
+        },
+        getContextMenuItems,
+        sideBar: { toolPanels: ["columns", "filters"], hiddenByDefault: true },
+        calculatedColumns: true,
+        onCalculatedColumnCreated: layoutChanged,
+        onCalculatedColumnRemoved: layoutChanged,
+        onCalculatedColumnExpressionChanged: layoutChanged,
+      }
+    : {};
+
   return (
-    <WatchlistShell wl={wl} title="Watchlist (AG Grid)" dragHandleClassName={dragHandleClassName} rootClassName="wl-ag" {...controls}>
+    <WatchlistShell wl={wl} title={config.title} dragHandleClassName={dragHandleClassName} rootClassName="wl-ag" {...controls}>
       <Box
         ref={containerRef}
         sx={{
@@ -503,10 +589,20 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
       >
         <AgGridReact<WatchlistRow>
           key={`${gridKey}-${cards ? "cards" : "table"}`}
+          modules={modules}
           theme={theme}
           rowData={rows}
           columnDefs={columnDefs}
-          defaultColDef={{ resizable: true, sortable: true, filter: true, suppressHeaderFilterButton: true, enableCellChangeFlash: false }}
+          // Enterprise filters live in the side bar; Community uses the native header filter button
+          // and, from "Filtros", its floating filters.
+          defaultColDef={{
+            resizable: true,
+            sortable: true,
+            filter: true,
+            suppressHeaderFilterButton: enterprise,
+            floatingFilter: !enterprise && floatingFilters,
+            enableCellChangeFlash: false,
+          }}
           getRowId={(p) => String(p.data.id)}
           initialState={wl.initialLayout as GridState | undefined}
           onGridReady={(e) => {
@@ -516,19 +612,7 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
           onGridPreDestroyed={() => {
             apiRef.current = null;
           }}
-          // Grouping by section (WL-04); unsectioned instruments stay at the root.
-          groupDisplayType="singleColumn"
-          groupAllowUnbalanced
-          groupDefaultExpanded={-1}
-          refreshAfterGroupEdit
-          autoGroupColumnDef={{
-            headerName: "Nemotécnico",
-            field: "orderbook",
-            pinned: "left",
-            width: 170,
-            rowDrag: (p) => !readOnly && !filtersActive && !sorted && !p.node.group,
-            cellRendererParams: { suppressCount: false },
-          }}
+          {...enterpriseProps}
           rowDragManaged
           rowDragMultiRow
           suppressMoveWhenRowDragging
@@ -544,14 +628,11 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
           onRowClicked={(e) => e.data && wl.publishLink(e.data)}
           onCellClicked={onCellClicked}
           onCellKeyDown={onCellKeyDown}
-          getContextMenuItems={getContextMenuItems}
           getRowClass={(p: RowClassParams<WatchlistRow>) =>
             p.data
               ? ["watchlist-row", p.data.session === "Suspendido" ? "watchlist-row-suspended" : "", p.data.alert === "triggered" ? "watchlist-row-alert-triggered" : ""]
               : undefined
           }
-          sideBar={{ toolPanels: ["columns", "filters"], hiddenByDefault: true }}
-          calculatedColumns
           cellFlashDuration={settings.flashMs}
           cellFadeDuration={settings.flashMs}
           asyncTransactionWaitMillis={100}
@@ -573,9 +654,6 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
           onColumnResized={(e) => e.finished && layoutChanged()}
           onColumnPinned={layoutChanged}
           onFilterChanged={layoutChanged}
-          onCalculatedColumnCreated={layoutChanged}
-          onCalculatedColumnRemoved={layoutChanged}
-          onCalculatedColumnExpressionChanged={layoutChanged}
         />
       </Box>
     </WatchlistShell>

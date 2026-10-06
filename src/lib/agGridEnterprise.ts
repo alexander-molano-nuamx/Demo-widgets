@@ -1,4 +1,5 @@
-import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import type { Module } from "ag-grid-community";
+import { AllCommunityModule } from "ag-grid-community";
 import {
   CalculatedColumnsModule,
   CellSelectionModule,
@@ -16,11 +17,12 @@ import {
 import { AgChartsCommunityModule } from "ag-charts-community";
 
 /**
- * AG Grid Enterprise modules used by the AG Grid watchlist. Only what the watchlist needs is
- * registered, to keep the bundle in check. Without NEXT_PUBLIC_AG_GRID_LICENSE_KEY the grid runs
- * in evaluation mode (watermark + console notice).
+ * AG Grid Enterprise modules for the "Watchlist (AG Grid Enterprise)" widget. They are passed to
+ * that grid instance only (`modules` prop), never registered globally, so the Community widget
+ * does not inherit Enterprise features. Without NEXT_PUBLIC_AG_GRID_LICENSE_KEY the grid runs in
+ * evaluation mode (watermark + console notice).
  */
-ModuleRegistry.registerModules([
+export const AG_ENTERPRISE_MODULES: Module[] = [
   AllCommunityModule,
   RowGroupingModule,
   ContextMenuModule,
@@ -33,7 +35,7 @@ ModuleRegistry.registerModules([
   CellSelectionModule,
   CalculatedColumnsModule,
   SparklinesModule.with(AgChartsCommunityModule),
-]);
+];
 
 const licenseKey = process.env.NEXT_PUBLIC_AG_GRID_LICENSE_KEY;
 if (licenseKey) LicenseManager.setLicenseKey(licenseKey);
