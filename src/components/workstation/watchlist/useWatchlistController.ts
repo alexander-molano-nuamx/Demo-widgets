@@ -17,7 +17,13 @@ import {
   type WatchlistSettings,
 } from "@/lib/watchlist/model";
 import { SYNTHETIC_ID_BASE, createSyntheticInstrument, createUniverse } from "@/lib/watchlist/universe";
-import { readBenchConfig, resetBenchCounters } from "@/lib/watchlist/benchmark";
+import {
+  CORE_PROFILE_HIDDEN,
+  createRandom,
+  readBenchConfig,
+  resetBenchCounters,
+  type BenchWidget,
+} from "@/lib/watchlist/benchmark";
 import {
   STORAGE_VERSION,
   clearWatchlist,
@@ -56,6 +62,8 @@ export interface WatchlistControllerOptions {
   storageKey: string;
   defaultVisibility: ColumnVisibility;
   adapterRef: RefObject<GridAdapter | null>;
+  /** Which grid this controller drives; names its benchmark counters (`window.__wlBench[benchId]`). */
+  benchId: BenchWidget;
 }
 
 export const defaultSettings: WatchlistSettings = { density: "compact", flashMs: 900, viewMode: "auto", linkGroup: "none" };
@@ -92,7 +100,7 @@ export function matchesRule(value: unknown, rule: ConditionalRule) {
 }
 
 /** Shared control plane of a watchlist widget. The grid only renders `rows` and reports back. */
-export function useWatchlistController({ storageKey, defaultVisibility, adapterRef }: WatchlistControllerOptions) {
+export function useWatchlistController({ storageKey, defaultVisibility, adapterRef, benchId }: WatchlistControllerOptions) {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -110,7 +118,7 @@ export function useWatchlistController({ storageKey, defaultVisibility, adapterR
         .sort((a, b) => a.country.localeCompare(b.country))
         .map((inst) => ({ id: inst.id, section: sectionByCountry[inst.country] }));
       u.defaultLists.unshift({ id: "sys-bench", name: `Benchmark ${bench.size}`, kind: "system", items });
-      resetBenchCounters();
+      resetBenchCounters(benchId);
     }
     const byOrderbook = new Map(Array.from(u.instruments.values()).map((i) => [i.orderbook, i]));
     for (const def of persisted?.synthetics ?? []) {
@@ -135,9 +143,13 @@ export function useWatchlistController({ storageKey, defaultVisibility, adapterR
   const [calculatedColumns, setCalculatedColumns] = useState(persisted?.calculatedColumns ?? []);
   const [synthetics, setSynthetics] = useState<SyntheticDefinition[]>(persisted?.synthetics ?? []);
   const [templates, setTemplates] = useState<ColumnTemplate[]>(persisted?.view.templates ?? []);
-  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(
-    persisted?.view.columnVisibility ?? defaultVisibility,
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>(() =>
+    bench?.profile === "core"
+      ? { ...defaultVisibility, ...Object.fromEntries(CORE_PROFILE_HIDDEN.map((field) => [field, false])) }
+      : (persisted?.view.columnVisibility ?? defaultVisibility),
   );
+  // Benchmark runs use a seeded generator so both grids receive exactly the same tick stream.
+  const [random] = useState(() => (bench ? createRandom(bench.seed) : Math.random));
   const [settings, setSettings] = useState<WatchlistSettings>({ ...defaultSettings, ...persisted?.settings });
   /** Layout to apply when the grid (re-)mounts: last saved one, or none after a reset. */
   const [initialLayout, setInitialLayout] = useState<unknown>(persisted?.view.layout);
@@ -276,9 +288,11 @@ export function useWatchlistController({ storageKey, defaultVisibility, adapterR
     instruments,
     byOrderbook,
     activeIdsRef,
-    enabled: demoState === "normal" && !listLoading,
+    // In an isolated benchmark only the selected widget's feed runs.
+    enabled: demoState === "normal" && !listLoading && (!bench?.widget || bench.widget === benchId),
     ticksPerSecond: bench?.ticksPerSecond,
-    measure: Boolean(bench),
+    measure: bench ? benchId : null,
+    random,
     priceAlertsRef,
     listAlertRef,
     onPriceAlert,

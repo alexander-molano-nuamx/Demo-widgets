@@ -4,7 +4,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import { evaluateFormula, parseFormula, type FormulaNode } from "@/lib/watchlist/formula";
 import type { Instrument, ListAlert, PriceAlert } from "@/lib/watchlist/model";
 import { roundPrice } from "@/lib/watchlist/universe";
-import { DEFAULT_TICKS_PER_SECOND } from "@/lib/watchlist/benchmark";
+import { DEFAULT_TICKS_PER_SECOND, type BenchWidget } from "@/lib/watchlist/benchmark";
 
 const TICK_INTERVAL_MS = 250;
 const INTRADAY_POINTS = 30;
@@ -27,23 +27,25 @@ interface LiveFeedOptions {
   enabled: boolean;
   /** Simulated ticks per second, delivered in batches every TICK_INTERVAL_MS. */
   ticksPerSecond?: number;
-  /** Collect counters on window.__wlBench (benchmark mode only). */
-  measure?: boolean;
+  /** Collect counters on window.__wlBench[measure] (benchmark mode only). */
+  measure?: BenchWidget | null;
+  /** Random source; benchmark mode passes a seeded one so every run gets the same ticks. */
+  random?: () => number;
   priceAlertsRef: RefObject<PriceAlert[]>;
   listAlertRef: RefObject<ListAlert | null>;
   onPriceAlert: (alert: PriceAlert, instrument: Instrument) => void;
   onListAlert: (alert: ListAlert, instrument: Instrument) => void;
 }
 
-function tick(inst: Instrument, now: number) {
+function tick(inst: Instrument, now: number, random: () => number) {
   const reference = inst.last ?? inst.previousClose;
   if (reference == null) return false;
-  const direction = Math.random() > 0.5 ? 1 : -1;
-  const ticks = 1 + Math.floor(Math.random() * 3);
+  const direction = random() > 0.5 ? 1 : -1;
+  const ticks = 1 + Math.floor(random() * 3);
   const step = Math.max(inst.tickSize, reference * 0.0007);
   const last = Math.max(inst.tickSize, roundPrice(reference + direction * step * ticks, inst.tickSize));
-  const qty = Math.round(50 + Math.random() * 1500);
-  const half = inst.tickSize * (1 + Math.floor(Math.random() * 2));
+  const qty = Math.round(50 + random() * 1500);
+  const half = inst.tickSize * (1 + Math.floor(random() * 2));
 
   inst.lastTick = last > reference ? 1 : last < reference ? -1 : 0;
   inst.last = last;
@@ -57,8 +59,8 @@ function tick(inst: Instrument, now: number) {
   inst.bidPrice = roundPrice(last - half, inst.tickSize);
   inst.askPrice = roundPrice(last + half, inst.tickSize);
   inst.spread = inst.askPrice - inst.bidPrice;
-  inst.bidQty = Math.round(100 + Math.random() * 9000);
-  inst.askQty = Math.round(100 + Math.random() * 9000);
+  inst.bidQty = Math.round(100 + random() * 9000);
+  inst.askQty = Math.round(100 + random() * 9000);
   inst.volume = (inst.volume ?? 0) + qty;
   inst.amount = (inst.amount ?? 0) + qty * last;
   inst.lastTradeAt = now;
@@ -78,7 +80,8 @@ export function useLiveFeed({
   activeIdsRef,
   enabled,
   ticksPerSecond = DEFAULT_TICKS_PER_SECOND,
-  measure = false,
+  measure = null,
+  random = Math.random,
   priceAlertsRef,
   listAlertRef,
   onPriceAlert,
@@ -101,12 +104,12 @@ export function useLiveFeed({
       const touched = new Set<number>();
       const ticksPerBatch = Math.max(1, Math.round((ticksPerSecond * TICK_INTERVAL_MS) / 1000));
       for (let n = 0; n < ticksPerBatch; n += 1) {
-        const inst = instruments.get(ids[Math.floor(Math.random() * ids.length)]);
+        const inst = instruments.get(ids[Math.floor(random() * ids.length)]);
         if (!inst || inst.syntheticExpression || !inst.hasPermission || inst.status !== "ENABLED") continue;
         if (inst.session === "Cerrado" || inst.session === "Pre-apertura") continue;
         // Delayed feeds publish far less often.
-        if (inst.quality === "delayed" && Math.random() < 0.75) continue;
-        if (tick(inst, now)) touched.add(inst.id);
+        if (inst.quality === "delayed" && random() < 0.75) continue;
+        if (tick(inst, now, random)) touched.add(inst.id);
       }
 
       // Synthetic instruments are recomputed from their legs on every batch.
@@ -158,7 +161,7 @@ export function useLiveFeed({
       if (updates.length === 0) return;
       const started = measure ? performance.now() : 0;
       sink.push(updates);
-      const counters = measure ? window.__wlBench : undefined;
+      const counters = measure ? window.__wlBench?.[measure] : undefined;
       if (counters) {
         const elapsed = performance.now() - started;
         counters.batches += 1;
@@ -169,5 +172,5 @@ export function useLiveFeed({
       }
     }, TICK_INTERVAL_MS);
     return () => window.clearInterval(interval);
-  }, [enabled, ticksPerSecond, measure, sinkRef, instruments, byOrderbook, activeIdsRef, priceAlertsRef, listAlertRef]);
+  }, [enabled, ticksPerSecond, measure, random, sinkRef, instruments, byOrderbook, activeIdsRef, priceAlertsRef, listAlertRef]);
 }

@@ -54,7 +54,7 @@ function selectedLeafIds(model: GridRowSelectionModel, rows: WatchlistRow[]): nu
 export function WatchlistPanel({ dragHandleClassName, ...controls }: WatchlistPanelProps) {
   const apiRef = useGridApiRef();
   const adapterRef = useRef<GridAdapter | null>(null);
-  const wl = useWatchlistController({ storageKey: STORAGE_KEY, defaultVisibility, adapterRef });
+  const wl = useWatchlistController({ storageKey: STORAGE_KEY, defaultVisibility, adapterRef, benchId: "mui" });
   const { rows, cards, readOnly, filtersActive, settings, calculatedColumns } = wl;
   const treeData = !cards;
 

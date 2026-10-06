@@ -267,7 +267,7 @@ export function AgWatchlistPanel({ dragHandleClassName, ...controls }: AgWatchli
   const adapterRef = useRef<GridAdapter | null>(null);
   const apiRef = useRef<GridApi<WatchlistRow> | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wl = useWatchlistController({ storageKey: STORAGE_KEY, defaultVisibility, adapterRef });
+  const wl = useWatchlistController({ storageKey: STORAGE_KEY, defaultVisibility, adapterRef, benchId: "ag" });
   const { rows, cards, readOnly, filtersActive, settings, actions, effectiveVisibility, layoutChanged, instruments } = wl;
   const { mode, systemMode } = useColorScheme();
   const dark = (mode === "system" ? systemMode : mode) === "dark";
