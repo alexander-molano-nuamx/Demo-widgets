@@ -1,0 +1,6130 @@
+{
+  "generatedAt": "2026-10-06T19:09:50.037Z",
+  "totals": {
+    "runs": 180,
+    "ok": 180,
+    "failed": 0,
+    "mobileTicket": 60,
+    "soak": 2,
+    "firstRunAt": "2026-10-06T15:05:24.816Z"
+  },
+  "errors": [],
+  "criteria": {
+    "ticksRatio": {
+      "label": "Ticks logrados ≥ 95 % de lo elegible",
+      "min": 0.95
+    },
+    "idleP95": {
+      "label": "Frame p95 con ticks ≤ 50 ms",
+      "max": 50
+    },
+    "scrollFps": {
+      "label": "Scroll ≥ 30 FPS",
+      "min": 30
+    },
+    "longTaskMax": {
+      "label": "Ningún long task > 200 ms",
+      "max": 200
+    }
+  },
+  "scenarios": [
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 25,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 6853,
+          "range": [
+            6219,
+            7933
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 56.6,
+          "range": [
+            56,
+            57.8
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.9,
+            33.2
+          ]
+        },
+        "p99": {
+          "median": 50,
+          "range": [
+            33.4,
+            50
+          ]
+        },
+        "longTasks": {
+          "median": 8,
+          "range": [
+            4,
+            9
+          ]
+        },
+        "longTaskMax": {
+          "median": 333,
+          "range": [
+            170,
+            391
+          ]
+        },
+        "mainBusyPct": {
+          "median": 25.3,
+          "range": [
+            23.7,
+            26.8
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 177.1,
+          "range": [
+            166,
+            182.5
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 16.5,
+          "range": [
+            14.6,
+            17.9
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19,
+          "range": [
+            19,
+            19
+          ]
+        },
+        "flashesPerSec": {
+          "median": 17.2,
+          "range": [
+            17.2,
+            17.2
+          ]
+        },
+        "scrollFps": {
+          "median": 9.7,
+          "range": [
+            6.2,
+            10.8
+          ]
+        },
+        "scrollP95": {
+          "median": 166.7,
+          "range": [
+            150,
+            250
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 808,
+          "range": [
+            616,
+            888
+          ]
+        },
+        "sortMs": {
+          "median": 1088,
+          "range": [
+            984,
+            1544
+          ]
+        },
+        "filterMs": {
+          "median": 856,
+          "range": [
+            640,
+            1096
+          ]
+        },
+        "heapMB": {
+          "median": 183.8,
+          "range": [
+            50.1,
+            216.3
+          ]
+        },
+        "domNodes": {
+          "median": 11535,
+          "range": [
+            1447,
+            11699
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8174,
+          "range": [
+            7713,
+            9340
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.9,
+          "range": [
+            59.8,
+            60
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 17.1,
+          "range": [
+            17,
+            17.1
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "longTaskMax": {
+          "median": 77,
+          "range": [
+            68,
+            121
+          ]
+        },
+        "mainBusyPct": {
+          "median": 33.6,
+          "range": [
+            23.5,
+            35.7
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 25.6,
+          "range": [
+            17.7,
+            27
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 39.4,
+          "range": [
+            29.2,
+            42.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19,
+          "range": [
+            18.9,
+            19
+          ]
+        },
+        "flashesPerSec": {
+          "median": 17.6,
+          "range": [
+            17.4,
+            17.6
+          ]
+        },
+        "scrollFps": {
+          "median": 26.9,
+          "range": [
+            26.2,
+            32.1
+          ]
+        },
+        "scrollP95": {
+          "median": 50.2,
+          "range": [
+            50,
+            66.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 56,
+          "range": [
+            56,
+            80
+          ]
+        },
+        "sortMs": {
+          "median": 240,
+          "range": [
+            184,
+            352
+          ]
+        },
+        "filterMs": {
+          "median": 296,
+          "range": [
+            264,
+            336
+          ]
+        },
+        "heapMB": {
+          "median": 103.5,
+          "range": [
+            88.3,
+            106
+          ]
+        },
+        "domNodes": {
+          "median": 62580,
+          "range": [
+            56638,
+            63551
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 25,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8717,
+          "range": [
+            8271,
+            10962
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 52.2,
+          "range": [
+            48.5,
+            55.6
+          ]
+        },
+        "p95": {
+          "median": 33.3,
+          "range": [
+            16.9,
+            33.4
+          ]
+        },
+        "p99": {
+          "median": 83.1,
+          "range": [
+            50,
+            100.1
+          ]
+        },
+        "longTasks": {
+          "median": 28,
+          "range": [
+            10,
+            37
+          ]
+        },
+        "longTaskMax": {
+          "median": 340,
+          "range": [
+            271,
+            606
+          ]
+        },
+        "mainBusyPct": {
+          "median": 36.3,
+          "range": [
+            26.5,
+            39
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 250.2,
+          "range": [
+            173.5,
+            276.1
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 19.6,
+          "range": [
+            16.5,
+            21.4
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.1,
+          "range": [
+            19,
+            19.3
+          ]
+        },
+        "flashesPerSec": {
+          "median": 17.2,
+          "range": [
+            16.8,
+            17.6
+          ]
+        },
+        "scrollFps": {
+          "median": 4.8,
+          "range": [
+            3.8,
+            6.2
+          ]
+        },
+        "scrollP95": {
+          "median": 316.6,
+          "range": [
+            233.2,
+            383.4
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1360,
+          "range": [
+            1136,
+            1664
+          ]
+        },
+        "sortMs": {
+          "median": 1480,
+          "range": [
+            192,
+            1672
+          ]
+        },
+        "filterMs": {
+          "median": 1656,
+          "range": [
+            1232,
+            2560
+          ]
+        },
+        "heapMB": {
+          "median": 183.3,
+          "range": [
+            149.3,
+            299.8
+          ]
+        },
+        "domNodes": {
+          "median": 12076,
+          "range": [
+            7633,
+            23448
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9331,
+          "range": [
+            8377,
+            10746
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.6,
+          "range": [
+            57.9,
+            59.7
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 17.3,
+          "range": [
+            17,
+            33.4
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "longTaskMax": {
+          "median": 258,
+          "range": [
+            167,
+            322
+          ]
+        },
+        "mainBusyPct": {
+          "median": 39,
+          "range": [
+            34.8,
+            45.8
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 25,
+          "range": [
+            23.9,
+            33.8
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 37.9,
+          "range": [
+            35,
+            48.5
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.1,
+          "range": [
+            19,
+            19.1
+          ]
+        },
+        "flashesPerSec": {
+          "median": 17.4,
+          "range": [
+            17.4,
+            17.6
+          ]
+        },
+        "scrollFps": {
+          "median": 7,
+          "range": [
+            6.8,
+            10.7
+          ]
+        },
+        "scrollP95": {
+          "median": 233.4,
+          "range": [
+            150,
+            283.2
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 136,
+          "range": [
+            80,
+            184
+          ]
+        },
+        "sortMs": {
+          "median": 984,
+          "range": [
+            760,
+            1184
+          ]
+        },
+        "filterMs": {
+          "median": 592,
+          "range": [
+            368,
+            856
+          ]
+        },
+        "heapMB": {
+          "median": 133.5,
+          "range": [
+            71.7,
+            219.9
+          ]
+        },
+        "domNodes": {
+          "median": 60512,
+          "range": [
+            5768,
+            81043
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 100,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 7879,
+          "range": [
+            5940,
+            8099
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 48.7,
+          "range": [
+            45.4,
+            54
+          ]
+        },
+        "p95": {
+          "median": 49.9,
+          "range": [
+            33.3,
+            66.6
+          ]
+        },
+        "p99": {
+          "median": 100.2,
+          "range": [
+            50.1,
+            116.7
+          ]
+        },
+        "longTasks": {
+          "median": 39,
+          "range": [
+            18,
+            55
+          ]
+        },
+        "longTaskMax": {
+          "median": 325,
+          "range": [
+            255,
+            380
+          ]
+        },
+        "mainBusyPct": {
+          "median": 44.5,
+          "range": [
+            35.6,
+            47.2
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 289.7,
+          "range": [
+            220.1,
+            312.3
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 43.2,
+          "range": [
+            38.2,
+            44.9
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75.9,
+          "range": [
+            75.9,
+            76
+          ]
+        },
+        "flashesPerSec": {
+          "median": 59.4,
+          "range": [
+            59.2,
+            59.4
+          ]
+        },
+        "scrollFps": {
+          "median": 5.5,
+          "range": [
+            5.4,
+            7.3
+          ]
+        },
+        "scrollP95": {
+          "median": 266.8,
+          "range": [
+            216.5,
+            316.5
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1128,
+          "range": [
+            1072,
+            1608
+          ]
+        },
+        "sortMs": {
+          "median": 1824,
+          "range": [
+            1528,
+            1928
+          ]
+        },
+        "filterMs": {
+          "median": 1224,
+          "range": [
+            1040,
+            1352
+          ]
+        },
+        "heapMB": {
+          "median": 58.2,
+          "range": [
+            53.6,
+            117.5
+          ]
+        },
+        "domNodes": {
+          "median": 1459,
+          "range": [
+            1453,
+            5229
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.999,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8187,
+          "range": [
+            7830,
+            11543
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.4,
+          "range": [
+            53.1,
+            59.9
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.8,
+            33.4
+          ]
+        },
+        "p99": {
+          "median": 33.1,
+          "range": [
+            16.9,
+            33.5
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "longTaskMax": {
+          "median": 104,
+          "range": [
+            81,
+            121
+          ]
+        },
+        "mainBusyPct": {
+          "median": 46.8,
+          "range": [
+            40.4,
+            68.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 38.3,
+          "range": [
+            31.2,
+            58.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 79.7,
+          "range": [
+            74.7,
+            120
+          ]
+        },
+        "ticksPerSec": {
+          "median": 76,
+          "range": [
+            75.9,
+            77
+          ]
+        },
+        "flashesPerSec": {
+          "median": 53.6,
+          "range": [
+            53.3,
+            53.8
+          ]
+        },
+        "scrollFps": {
+          "median": 22.2,
+          "range": [
+            15.6,
+            24.8
+          ]
+        },
+        "scrollP95": {
+          "median": 66.8,
+          "range": [
+            66.7,
+            100
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 72,
+          "range": [
+            56,
+            96
+          ]
+        },
+        "sortMs": {
+          "median": 320,
+          "range": [
+            272,
+            376
+          ]
+        },
+        "filterMs": {
+          "median": 440,
+          "range": [
+            344,
+            464
+          ]
+        },
+        "heapMB": {
+          "median": 83.1,
+          "range": [
+            58.6,
+            91.7
+          ]
+        },
+        "domNodes": {
+          "median": 38935,
+          "range": [
+            4297,
+            57425
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 100,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8317,
+          "range": [
+            5982,
+            9125
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 51.4,
+          "range": [
+            47.7,
+            53.8
+          ]
+        },
+        "p95": {
+          "median": 33.4,
+          "range": [
+            33.3,
+            50
+          ]
+        },
+        "p99": {
+          "median": 66.8,
+          "range": [
+            66.5,
+            100.1
+          ]
+        },
+        "longTasks": {
+          "median": 33,
+          "range": [
+            17,
+            42
+          ]
+        },
+        "longTaskMax": {
+          "median": 311,
+          "range": [
+            246,
+            360
+          ]
+        },
+        "mainBusyPct": {
+          "median": 41.3,
+          "range": [
+            36.1,
+            42.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 258.7,
+          "range": [
+            215.1,
+            265.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 35.6,
+          "range": [
+            33.9,
+            37.8
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75.9,
+          "range": [
+            75.9,
+            76.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 59,
+          "range": [
+            58.9,
+            59.4
+          ]
+        },
+        "scrollFps": {
+          "median": 6.2,
+          "range": [
+            5,
+            7.9
+          ]
+        },
+        "scrollP95": {
+          "median": 250,
+          "range": [
+            233.3,
+            283.4
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1176,
+          "range": [
+            968,
+            1464
+          ]
+        },
+        "sortMs": {
+          "median": 1352,
+          "range": [
+            368,
+            1624
+          ]
+        },
+        "filterMs": {
+          "median": 1360,
+          "range": [
+            1152,
+            1928
+          ]
+        },
+        "heapMB": {
+          "median": 134.6,
+          "range": [
+            69.7,
+            204.2
+          ]
+        },
+        "domNodes": {
+          "median": 7589,
+          "range": [
+            1862,
+            13792
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.999,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 7647,
+          "range": [
+            7301,
+            9794
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.2,
+          "range": [
+            52.4,
+            59.5
+          ]
+        },
+        "p95": {
+          "median": 16.8,
+          "range": [
+            16.8,
+            33.4
+          ]
+        },
+        "p99": {
+          "median": 33.3,
+          "range": [
+            16.9,
+            50
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            3
+          ]
+        },
+        "longTaskMax": {
+          "median": 269,
+          "range": [
+            212,
+            286
+          ]
+        },
+        "mainBusyPct": {
+          "median": 51.8,
+          "range": [
+            41.4,
+            57.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 36.9,
+          "range": [
+            31,
+            48
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 75.5,
+          "range": [
+            57.2,
+            83.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 76,
+          "range": [
+            75.7,
+            76
+          ]
+        },
+        "flashesPerSec": {
+          "median": 53.4,
+          "range": [
+            53.3,
+            53.6
+          ]
+        },
+        "scrollFps": {
+          "median": 10.3,
+          "range": [
+            7.9,
+            11.4
+          ]
+        },
+        "scrollP95": {
+          "median": 166.7,
+          "range": [
+            150,
+            233.2
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 120,
+          "range": [
+            72,
+            128
+          ]
+        },
+        "sortMs": {
+          "median": 808,
+          "range": [
+            600,
+            1248
+          ]
+        },
+        "filterMs": {
+          "median": 432,
+          "range": [
+            288,
+            536
+          ]
+        },
+        "heapMB": {
+          "median": 180.4,
+          "range": [
+            142.4,
+            208.8
+          ]
+        },
+        "domNodes": {
+          "median": 73150,
+          "range": [
+            59901,
+            76598
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 400,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 7832,
+          "range": [
+            6595,
+            8153
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 27.8,
+          "range": [
+            14.4,
+            32.2
+          ]
+        },
+        "p95": {
+          "median": 150.1,
+          "range": [
+            133.3,
+            233.4
+          ]
+        },
+        "p99": {
+          "median": 200,
+          "range": [
+            199.8,
+            366.7
+          ]
+        },
+        "longTasks": {
+          "median": 79,
+          "range": [
+            78,
+            89
+          ]
+        },
+        "longTaskMax": {
+          "median": 365,
+          "range": [
+            339,
+            445
+          ]
+        },
+        "mainBusyPct": {
+          "median": 74.9,
+          "range": [
+            70.9,
+            79.9
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 520.8,
+          "range": [
+            473.1,
+            584
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 83.1,
+          "range": [
+            54.6,
+            85.4
+          ]
+        },
+        "ticksPerSec": {
+          "median": 288.7,
+          "range": [
+            278.8,
+            289.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 221.5,
+          "range": [
+            210.4,
+            222.2
+          ]
+        },
+        "scrollFps": {
+          "median": 3.8,
+          "range": [
+            3,
+            4
+          ]
+        },
+        "scrollP95": {
+          "median": 366.7,
+          "range": [
+            349.9,
+            450
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1240,
+          "range": [
+            888,
+            1584
+          ]
+        },
+        "sortMs": {
+          "median": 1344,
+          "range": [
+            1096,
+            2144
+          ]
+        },
+        "filterMs": {
+          "median": 1160,
+          "range": [
+            1056,
+            1784
+          ]
+        },
+        "heapMB": {
+          "median": 58.4,
+          "range": [
+            57.9,
+            255.4
+          ]
+        },
+        "domNodes": {
+          "median": 2926,
+          "range": [
+            1384,
+            12043
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.998,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8453,
+          "range": [
+            6996,
+            10709
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 50.8,
+          "range": [
+            50.7,
+            54.1
+          ]
+        },
+        "p95": {
+          "median": 33.4,
+          "range": [
+            33.3,
+            33.4
+          ]
+        },
+        "p99": {
+          "median": 50,
+          "range": [
+            33.5,
+            50
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            1
+          ]
+        },
+        "longTaskMax": {
+          "median": 139,
+          "range": [
+            117,
+            168
+          ]
+        },
+        "mainBusyPct": {
+          "median": 74.3,
+          "range": [
+            70.5,
+            76.9
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 96.5,
+          "range": [
+            84.9,
+            100.3
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 168.1,
+          "range": [
+            157.8,
+            179.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 289.2,
+          "range": [
+            285.1,
+            289.3
+          ]
+        },
+        "flashesPerSec": {
+          "median": 106.6,
+          "range": [
+            106,
+            106.9
+          ]
+        },
+        "scrollFps": {
+          "median": 18.9,
+          "range": [
+            12.4,
+            20.7
+          ]
+        },
+        "scrollP95": {
+          "median": 100,
+          "range": [
+            83.4,
+            166.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 80,
+          "range": [
+            56,
+            112
+          ]
+        },
+        "sortMs": {
+          "median": 424,
+          "range": [
+            192,
+            640
+          ]
+        },
+        "filterMs": {
+          "median": 408,
+          "range": [
+            376,
+            600
+          ]
+        },
+        "heapMB": {
+          "median": 119.3,
+          "range": [
+            101.8,
+            167.3
+          ]
+        },
+        "domNodes": {
+          "median": 64778,
+          "range": [
+            58401,
+            73494
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 500,
+      "tps": 400,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8974,
+          "range": [
+            8376,
+            12789
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 13.6,
+          "range": [
+            5.6,
+            19.5
+          ]
+        },
+        "p95": {
+          "median": 266.6,
+          "range": [
+            199.7,
+            400
+          ]
+        },
+        "p99": {
+          "median": 366.6,
+          "range": [
+            266.8,
+            500
+          ]
+        },
+        "longTasks": {
+          "median": 79,
+          "range": [
+            67,
+            83
+          ]
+        },
+        "longTaskMax": {
+          "median": 553,
+          "range": [
+            453,
+            795
+          ]
+        },
+        "mainBusyPct": {
+          "median": 86.6,
+          "range": [
+            82.4,
+            90.5
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 664.6,
+          "range": [
+            616.7,
+            713.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 58.5,
+          "range": [
+            46.7,
+            62.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 271.4,
+          "range": [
+            219.4,
+            289.2
+          ]
+        },
+        "flashesPerSec": {
+          "median": 202.5,
+          "range": [
+            168.1,
+            222.2
+          ]
+        },
+        "scrollFps": {
+          "median": 3.1,
+          "range": [
+            1.8,
+            3.4
+          ]
+        },
+        "scrollP95": {
+          "median": 533.4,
+          "range": [
+            466.7,
+            916.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1456,
+          "range": [
+            928,
+            1512
+          ]
+        },
+        "sortMs": {
+          "median": 1864,
+          "range": [
+            0,
+            2032
+          ]
+        },
+        "filterMs": {
+          "median": 2160,
+          "range": [
+            1768,
+            3688
+          ]
+        },
+        "heapMB": {
+          "median": 202.9,
+          "range": [
+            152.3,
+            210.5
+          ]
+        },
+        "domNodes": {
+          "median": 7676,
+          "range": [
+            7001,
+            8948
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.95,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9925,
+          "range": [
+            9727,
+            11703
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 43,
+          "range": [
+            37.8,
+            46.4
+          ]
+        },
+        "p95": {
+          "median": 50,
+          "range": [
+            49.9,
+            66.7
+          ]
+        },
+        "p99": {
+          "median": 83.3,
+          "range": [
+            66.7,
+            100.1
+          ]
+        },
+        "longTasks": {
+          "median": 7,
+          "range": [
+            2,
+            27
+          ]
+        },
+        "longTaskMax": {
+          "median": 350,
+          "range": [
+            288,
+            384
+          ]
+        },
+        "mainBusyPct": {
+          "median": 81,
+          "range": [
+            57.6,
+            85.6
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 108.8,
+          "range": [
+            71.7,
+            118.9
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 148.8,
+          "range": [
+            99,
+            162
+          ]
+        },
+        "ticksPerSec": {
+          "median": 285.6,
+          "range": [
+            282.1,
+            288.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 105.9,
+          "range": [
+            105.2,
+            106.4
+          ]
+        },
+        "scrollFps": {
+          "median": 5.9,
+          "range": [
+            4.9,
+            6
+          ]
+        },
+        "scrollP95": {
+          "median": 316.7,
+          "range": [
+            299.9,
+            333.3
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 152,
+          "range": [
+            128,
+            200
+          ]
+        },
+        "sortMs": {
+          "median": 976,
+          "range": [
+            824,
+            1032
+          ]
+        },
+        "filterMs": {
+          "median": 592,
+          "range": [
+            480,
+            776
+          ]
+        },
+        "heapMB": {
+          "median": 128,
+          "range": [
+            112.7,
+            212.5
+          ]
+        },
+        "domNodes": {
+          "median": 55825,
+          "range": [
+            40098,
+            78388
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 25,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 8877,
+          "range": [
+            4845,
+            9909
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 58.2,
+          "range": [
+            56.7,
+            59
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.8,
+            17
+          ]
+        },
+        "p99": {
+          "median": 33.4,
+          "range": [
+            33.2,
+            49.9
+          ]
+        },
+        "longTasks": {
+          "median": 2,
+          "range": [
+            2,
+            7
+          ]
+        },
+        "longTaskMax": {
+          "median": 401,
+          "range": [
+            218,
+            481
+          ]
+        },
+        "mainBusyPct": {
+          "median": 20.9,
+          "range": [
+            15,
+            27.9
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 158.4,
+          "range": [
+            114.5,
+            221.6
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 7.2,
+          "range": [
+            5.2,
+            8.1
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.5,
+          "range": [
+            19.5,
+            19.7
+          ]
+        },
+        "flashesPerSec": {
+          "median": 4.8,
+          "range": [
+            4.8,
+            5.2
+          ]
+        },
+        "scrollFps": {
+          "median": 6.2,
+          "range": [
+            4.9,
+            12.8
+          ]
+        },
+        "scrollP95": {
+          "median": 250,
+          "range": [
+            166.6,
+            366.8
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1344,
+          "range": [
+            864,
+            1712
+          ]
+        },
+        "sortMs": {
+          "median": 1808,
+          "range": [
+            904,
+            2400
+          ]
+        },
+        "filterMs": {
+          "median": 1384,
+          "range": [
+            784,
+            2200
+          ]
+        },
+        "heapMB": {
+          "median": 122.1,
+          "range": [
+            65.5,
+            149.3
+          ]
+        },
+        "domNodes": {
+          "median": 5404,
+          "range": [
+            1915,
+            5627
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10719,
+          "range": [
+            5950,
+            11358
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.6,
+          "range": [
+            59.2,
+            60
+          ]
+        },
+        "p95": {
+          "median": 16.8,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 17,
+          "range": [
+            16.9,
+            33.3
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            2
+          ]
+        },
+        "longTaskMax": {
+          "median": 105,
+          "range": [
+            85,
+            331
+          ]
+        },
+        "mainBusyPct": {
+          "median": 20,
+          "range": [
+            15.3,
+            22.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 21.8,
+          "range": [
+            17.1,
+            24.2
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 19.8,
+          "range": [
+            15.5,
+            22.1
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.5,
+          "range": [
+            19.5,
+            19.7
+          ]
+        },
+        "flashesPerSec": {
+          "median": 5.8,
+          "range": [
+            5.8,
+            6
+          ]
+        },
+        "scrollFps": {
+          "median": 21,
+          "range": [
+            14,
+            23.1
+          ]
+        },
+        "scrollP95": {
+          "median": 67.1,
+          "range": [
+            66.7,
+            166.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 176,
+          "range": [
+            88,
+            1144
+          ]
+        },
+        "sortMs": {
+          "median": 528,
+          "range": [
+            408,
+            680
+          ]
+        },
+        "filterMs": {
+          "median": 504,
+          "range": [
+            336,
+            896
+          ]
+        },
+        "heapMB": {
+          "median": 93.9,
+          "range": [
+            59.6,
+            169.4
+          ]
+        },
+        "domNodes": {
+          "median": 58000,
+          "range": [
+            4704,
+            94356
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 25,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 7239,
+          "range": [
+            5580,
+            10583
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 57.2,
+          "range": [
+            55.4,
+            58.2
+          ]
+        },
+        "p95": {
+          "median": 17,
+          "range": [
+            16.9,
+            33.2
+          ]
+        },
+        "p99": {
+          "median": 49.8,
+          "range": [
+            33.3,
+            50
+          ]
+        },
+        "longTasks": {
+          "median": 7,
+          "range": [
+            2,
+            10
+          ]
+        },
+        "longTaskMax": {
+          "median": 334,
+          "range": [
+            318,
+            404
+          ]
+        },
+        "mainBusyPct": {
+          "median": 26.4,
+          "range": [
+            24.8,
+            29.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 197.3,
+          "range": [
+            185.5,
+            224
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 7.8,
+          "range": [
+            7.1,
+            8.7
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.5,
+          "range": [
+            19.5,
+            19.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 4.8,
+          "range": [
+            4.8,
+            4.8
+          ]
+        },
+        "scrollFps": {
+          "median": 8,
+          "range": [
+            4.9,
+            9.6
+          ]
+        },
+        "scrollP95": {
+          "median": 233.5,
+          "range": [
+            216.7,
+            333.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1136,
+          "range": [
+            464,
+            1808
+          ]
+        },
+        "sortMs": {
+          "median": 1080,
+          "range": [
+            0,
+            1808
+          ]
+        },
+        "filterMs": {
+          "median": 1448,
+          "range": [
+            1248,
+            2168
+          ]
+        },
+        "heapMB": {
+          "median": 159.9,
+          "range": [
+            148.7,
+            234.6
+          ]
+        },
+        "domNodes": {
+          "median": 7799,
+          "range": [
+            7682,
+            13285
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9269,
+          "range": [
+            6260,
+            11191
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.9,
+          "range": [
+            59.4,
+            59.9
+          ]
+        },
+        "p95": {
+          "median": 16.8,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 17,
+          "range": [
+            17,
+            17.3
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "longTaskMax": {
+          "median": 256,
+          "range": [
+            213,
+            323
+          ]
+        },
+        "mainBusyPct": {
+          "median": 24.3,
+          "range": [
+            21.8,
+            26.3
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 23.6,
+          "range": [
+            21,
+            24.5
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 20.6,
+          "range": [
+            17.7,
+            21.5
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.5,
+          "range": [
+            19.5,
+            19.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 5.8,
+          "range": [
+            5.8,
+            6
+          ]
+        },
+        "scrollFps": {
+          "median": 12.4,
+          "range": [
+            8.5,
+            14.8
+          ]
+        },
+        "scrollP95": {
+          "median": 166.7,
+          "range": [
+            133.5,
+            183.5
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 120,
+          "range": [
+            88,
+            200
+          ]
+        },
+        "sortMs": {
+          "median": 896,
+          "range": [
+            640,
+            976
+          ]
+        },
+        "filterMs": {
+          "median": 408,
+          "range": [
+            208,
+            520
+          ]
+        },
+        "heapMB": {
+          "median": 143.4,
+          "range": [
+            65.8,
+            200.4
+          ]
+        },
+        "domNodes": {
+          "median": 60423,
+          "range": [
+            5223,
+            77540
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 100,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9844,
+          "range": [
+            8569,
+            10173
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 46.9,
+          "range": [
+            45.3,
+            51.6
+          ]
+        },
+        "p95": {
+          "median": 50,
+          "range": [
+            33.4,
+            50
+          ]
+        },
+        "p99": {
+          "median": 116.6,
+          "range": [
+            66.9,
+            116.9
+          ]
+        },
+        "longTasks": {
+          "median": 39,
+          "range": [
+            27,
+            46
+          ]
+        },
+        "longTaskMax": {
+          "median": 539,
+          "range": [
+            394,
+            642
+          ]
+        },
+        "mainBusyPct": {
+          "median": 42.5,
+          "range": [
+            37.5,
+            47.7
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 291.1,
+          "range": [
+            249.6,
+            323.6
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 33.3,
+          "range": [
+            31.4,
+            38.1
+          ]
+        },
+        "ticksPerSec": {
+          "median": 74.9,
+          "range": [
+            74.8,
+            75.9
+          ]
+        },
+        "flashesPerSec": {
+          "median": 32.6,
+          "range": [
+            32.4,
+            33.1
+          ]
+        },
+        "scrollFps": {
+          "median": 4.4,
+          "range": [
+            3.7,
+            6
+          ]
+        },
+        "scrollP95": {
+          "median": 366.7,
+          "range": [
+            266.7,
+            500
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1760,
+          "range": [
+            1120,
+            2032
+          ]
+        },
+        "sortMs": {
+          "median": 2352,
+          "range": [
+            1672,
+            2768
+          ]
+        },
+        "filterMs": {
+          "median": 1952,
+          "range": [
+            1080,
+            2440
+          ]
+        },
+        "heapMB": {
+          "median": 155.2,
+          "range": [
+            116.3,
+            232.3
+          ]
+        },
+        "domNodes": {
+          "median": 10604,
+          "range": [
+            5746,
+            12925
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10985,
+          "range": [
+            10096,
+            11855
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 57.2,
+          "range": [
+            55.8,
+            58.1
+          ]
+        },
+        "p95": {
+          "median": 17.2,
+          "range": [
+            16.9,
+            33.3
+          ]
+        },
+        "p99": {
+          "median": 33.4,
+          "range": [
+            33.4,
+            33.5
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            1
+          ]
+        },
+        "longTaskMax": {
+          "median": 145,
+          "range": [
+            133,
+            170
+          ]
+        },
+        "mainBusyPct": {
+          "median": 50.2,
+          "range": [
+            46.5,
+            51.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 45.8,
+          "range": [
+            41.7,
+            47.5
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 77,
+          "range": [
+            71,
+            80.1
+          ]
+        },
+        "ticksPerSec": {
+          "median": 74.9,
+          "range": [
+            74.9,
+            75.9
+          ]
+        },
+        "flashesPerSec": {
+          "median": 30.6,
+          "range": [
+            30.5,
+            31
+          ]
+        },
+        "scrollFps": {
+          "median": 14.8,
+          "range": [
+            12.8,
+            17.9
+          ]
+        },
+        "scrollP95": {
+          "median": 116.7,
+          "range": [
+            100.1,
+            133.4
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 128,
+          "range": [
+            56,
+            280
+          ]
+        },
+        "sortMs": {
+          "median": 600,
+          "range": [
+            424,
+            792
+          ]
+        },
+        "filterMs": {
+          "median": 736,
+          "range": [
+            472,
+            1056
+          ]
+        },
+        "heapMB": {
+          "median": 150.8,
+          "range": [
+            60.4,
+            169.6
+          ]
+        },
+        "domNodes": {
+          "median": 85554,
+          "range": [
+            7039,
+            87323
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 100,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10618,
+          "range": [
+            8619,
+            11684
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 43.3,
+          "range": [
+            35.4,
+            50.3
+          ]
+        },
+        "p95": {
+          "median": 66.5,
+          "range": [
+            33.4,
+            100
+          ]
+        },
+        "p99": {
+          "median": 150,
+          "range": [
+            99.9,
+            166.7
+          ]
+        },
+        "longTasks": {
+          "median": 49,
+          "range": [
+            33,
+            74
+          ]
+        },
+        "longTaskMax": {
+          "median": 586,
+          "range": [
+            281,
+            670
+          ]
+        },
+        "mainBusyPct": {
+          "median": 48.7,
+          "range": [
+            38.4,
+            54
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 333.6,
+          "range": [
+            244.8,
+            372.1
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 30.6,
+          "range": [
+            26.8,
+            33.9
+          ]
+        },
+        "ticksPerSec": {
+          "median": 74.9,
+          "range": [
+            74.9,
+            75.8
+          ]
+        },
+        "flashesPerSec": {
+          "median": 32.4,
+          "range": [
+            32.3,
+            32.6
+          ]
+        },
+        "scrollFps": {
+          "median": 3.4,
+          "range": [
+            2.8,
+            6.1
+          ]
+        },
+        "scrollP95": {
+          "median": 550.1,
+          "range": [
+            283.2,
+            600
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1784,
+          "range": [
+            1104,
+            2176
+          ]
+        },
+        "sortMs": {
+          "median": 2472,
+          "range": [
+            192,
+            2488
+          ]
+        },
+        "filterMs": {
+          "median": 2104,
+          "range": [
+            1672,
+            2552
+          ]
+        },
+        "heapMB": {
+          "median": 296.3,
+          "range": [
+            154.8,
+            335
+          ]
+        },
+        "domNodes": {
+          "median": 13509,
+          "range": [
+            7958,
+            19122
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.999,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 12260,
+          "range": [
+            10171,
+            13901
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 52.8,
+          "range": [
+            42.4,
+            57.3
+          ]
+        },
+        "p95": {
+          "median": 33.3,
+          "range": [
+            17,
+            50.1
+          ]
+        },
+        "p99": {
+          "median": 49.9,
+          "range": [
+            33.4,
+            83.3
+          ]
+        },
+        "longTasks": {
+          "median": 1,
+          "range": [
+            1,
+            21
+          ]
+        },
+        "longTaskMax": {
+          "median": 334,
+          "range": [
+            254,
+            900
+          ]
+        },
+        "mainBusyPct": {
+          "median": 52.5,
+          "range": [
+            44.8,
+            60.8
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 44.1,
+          "range": [
+            41.6,
+            52.5
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 65.9,
+          "range": [
+            57.4,
+            78.7
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75,
+          "range": [
+            74.9,
+            76
+          ]
+        },
+        "flashesPerSec": {
+          "median": 30.6,
+          "range": [
+            30.6,
+            31.7
+          ]
+        },
+        "scrollFps": {
+          "median": 5.6,
+          "range": [
+            3.7,
+            7
+          ]
+        },
+        "scrollP95": {
+          "median": 316.6,
+          "range": [
+            216.6,
+            600.3
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 136,
+          "range": [
+            128,
+            144
+          ]
+        },
+        "sortMs": {
+          "median": 1136,
+          "range": [
+            1000,
+            1440
+          ]
+        },
+        "filterMs": {
+          "median": 720,
+          "range": [
+            592,
+            768
+          ]
+        },
+        "heapMB": {
+          "median": 76.3,
+          "range": [
+            67.8,
+            190.2
+          ]
+        },
+        "domNodes": {
+          "median": 74927,
+          "range": [
+            40813,
+            85826
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 400,
+      "profile": "core",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 6713,
+          "range": [
+            5827,
+            9022
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 51.2,
+          "range": [
+            22.2,
+            54.2
+          ]
+        },
+        "p95": {
+          "median": 33.4,
+          "range": [
+            33.3,
+            166.8
+          ]
+        },
+        "p99": {
+          "median": 83.3,
+          "range": [
+            50.2,
+            233.2
+          ]
+        },
+        "longTasks": {
+          "median": 36,
+          "range": [
+            20,
+            79
+          ]
+        },
+        "longTaskMax": {
+          "median": 245,
+          "range": [
+            148,
+            617
+          ]
+        },
+        "mainBusyPct": {
+          "median": 41,
+          "range": [
+            36.7,
+            73.3
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 249.6,
+          "range": [
+            213.5,
+            528.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 54.1,
+          "range": [
+            53.6,
+            61.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 294.6,
+          "range": [
+            294.2,
+            298
+          ]
+        },
+        "flashesPerSec": {
+          "median": 127.8,
+          "range": [
+            125.7,
+            129.2
+          ]
+        },
+        "scrollFps": {
+          "median": 7.8,
+          "range": [
+            3,
+            11.6
+          ]
+        },
+        "scrollP95": {
+          "median": 216.7,
+          "range": [
+            150,
+            516.8
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 568,
+          "range": [
+            400,
+            2008
+          ]
+        },
+        "sortMs": {
+          "median": 904,
+          "range": [
+            624,
+            2656
+          ]
+        },
+        "filterMs": {
+          "median": 744,
+          "range": [
+            568,
+            1536
+          ]
+        },
+        "heapMB": {
+          "median": 157.6,
+          "range": [
+            64.3,
+            255.3
+          ]
+        },
+        "domNodes": {
+          "median": 5708,
+          "range": [
+            1933,
+            12636
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9068,
+          "range": [
+            7410,
+            10793
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 57.7,
+          "range": [
+            44.5,
+            60
+          ]
+        },
+        "p95": {
+          "median": 17.2,
+          "range": [
+            16.8,
+            33.6
+          ]
+        },
+        "p99": {
+          "median": 33.4,
+          "range": [
+            16.9,
+            66.6
+          ]
+        },
+        "longTasks": {
+          "median": 0,
+          "range": [
+            0,
+            6
+          ]
+        },
+        "longTaskMax": {
+          "median": 67,
+          "range": [
+            59,
+            199
+          ]
+        },
+        "mainBusyPct": {
+          "median": 62,
+          "range": [
+            39.5,
+            76.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 60.5,
+          "range": [
+            38.2,
+            92.6
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 125.5,
+          "range": [
+            84.4,
+            152
+          ]
+        },
+        "ticksPerSec": {
+          "median": 294.1,
+          "range": [
+            293.5,
+            298.1
+          ]
+        },
+        "flashesPerSec": {
+          "median": 87.1,
+          "range": [
+            86.7,
+            87.4
+          ]
+        },
+        "scrollFps": {
+          "median": 25.8,
+          "range": [
+            11.2,
+            35.5
+          ]
+        },
+        "scrollP95": {
+          "median": 66.6,
+          "range": [
+            49.9,
+            166.7
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 88,
+          "range": [
+            48,
+            120
+          ]
+        },
+        "sortMs": {
+          "median": 328,
+          "range": [
+            248,
+            600
+          ]
+        },
+        "filterMs": {
+          "median": 360,
+          "range": [
+            192,
+            760
+          ]
+        },
+        "heapMB": {
+          "median": 139.5,
+          "range": [
+            86.5,
+            167.3
+          ]
+        },
+        "domNodes": {
+          "median": 70701,
+          "range": [
+            40612,
+            88512
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.998,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": true
+        }
+      }
+    },
+    {
+      "device": "desktop",
+      "size": 1000,
+      "tps": 400,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 12250,
+          "range": [
+            10358,
+            13479
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 8.7,
+          "range": [
+            7.8,
+            10.8
+          ]
+        },
+        "p95": {
+          "median": 349.9,
+          "range": [
+            299.9,
+            383.4
+          ]
+        },
+        "p99": {
+          "median": 466.6,
+          "range": [
+            366.8,
+            516.6
+          ]
+        },
+        "longTasks": {
+          "median": 88,
+          "range": [
+            87,
+            99
+          ]
+        },
+        "longTaskMax": {
+          "median": 748,
+          "range": [
+            687,
+            945
+          ]
+        },
+        "mainBusyPct": {
+          "median": 86,
+          "range": [
+            83.3,
+            88.5
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 680.9,
+          "range": [
+            640,
+            704.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 50.4,
+          "range": [
+            48.1,
+            53.5
+          ]
+        },
+        "ticksPerSec": {
+          "median": 269.7,
+          "range": [
+            262.1,
+            278.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 110.6,
+          "range": [
+            110.1,
+            113.7
+          ]
+        },
+        "scrollFps": {
+          "median": 2.2,
+          "range": [
+            1.8,
+            2.7
+          ]
+        },
+        "scrollP95": {
+          "median": 700,
+          "range": [
+            599.5,
+            783.3
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 2640,
+          "range": [
+            2240,
+            2984
+          ]
+        },
+        "sortMs": {
+          "median": 304,
+          "range": [
+            200,
+            4072
+          ]
+        },
+        "filterMs": {
+          "median": 3376,
+          "range": [
+            2928,
+            3608
+          ]
+        },
+        "heapMB": {
+          "median": 159.3,
+          "range": [
+            113.2,
+            201
+          ]
+        },
+        "domNodes": {
+          "median": 20016,
+          "range": [
+            19654,
+            24073
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.932,
+        "pass": {
+          "ticksRatio": false,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 12230,
+          "range": [
+            11942,
+            13921
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 32.3,
+          "range": [
+            27.9,
+            42.2
+          ]
+        },
+        "p95": {
+          "median": 66.7,
+          "range": [
+            50,
+            83.3
+          ]
+        },
+        "p99": {
+          "median": 100.2,
+          "range": [
+            66.7,
+            149.9
+          ]
+        },
+        "longTasks": {
+          "median": 37,
+          "range": [
+            4,
+            59
+          ]
+        },
+        "longTaskMax": {
+          "median": 616,
+          "range": [
+            490,
+            878
+          ]
+        },
+        "mainBusyPct": {
+          "median": 84.8,
+          "range": [
+            71.6,
+            86.3
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 112.5,
+          "range": [
+            99.8,
+            128.1
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 157.3,
+          "range": [
+            129.7,
+            162.5
+          ]
+        },
+        "ticksPerSec": {
+          "median": 289.5,
+          "range": [
+            286.2,
+            301.3
+          ]
+        },
+        "flashesPerSec": {
+          "median": 85.7,
+          "range": [
+            83.6,
+            87.5
+          ]
+        },
+        "scrollFps": {
+          "median": 3.6,
+          "range": [
+            3.2,
+            5.4
+          ]
+        },
+        "scrollP95": {
+          "median": 500.1,
+          "range": [
+            349.6,
+            599.9
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 160,
+          "range": [
+            104,
+            368
+          ]
+        },
+        "sortMs": {
+          "median": 1496,
+          "range": [
+            200,
+            1984
+          ]
+        },
+        "filterMs": {
+          "median": 1016,
+          "range": [
+            792,
+            1136
+          ]
+        },
+        "heapMB": {
+          "median": 187,
+          "range": [
+            104.6,
+            199.5
+          ]
+        },
+        "domNodes": {
+          "median": 72302,
+          "range": [
+            70423,
+            81087
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 500,
+      "tps": 25,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 11680,
+          "range": [
+            9928,
+            12920
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 56.5,
+          "range": [
+            39.4,
+            57.1
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.9,
+            66.7
+          ]
+        },
+        "p99": {
+          "median": 49.9,
+          "range": [
+            33.4,
+            200
+          ]
+        },
+        "longTasks": {
+          "median": 14,
+          "range": [
+            8,
+            74
+          ]
+        },
+        "longTaskMax": {
+          "median": 1132,
+          "range": [
+            989,
+            2442
+          ]
+        },
+        "mainBusyPct": {
+          "median": 6.5,
+          "range": [
+            6.2,
+            14.3
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 40.7,
+          "range": [
+            37.5,
+            105.7
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 3.7,
+          "range": [
+            3.3,
+            4.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 18.8,
+          "range": [
+            18.6,
+            18.9
+          ]
+        },
+        "flashesPerSec": {
+          "median": 1.1,
+          "range": [
+            1,
+            1.1
+          ]
+        },
+        "scrollFps": {
+          "median": 8.6,
+          "range": [
+            4,
+            9.7
+          ]
+        },
+        "scrollP95": {
+          "median": 233.4,
+          "range": [
+            216.8,
+            483.3
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1408,
+          "range": [
+            1216,
+            1848
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1056,
+          "range": [
+            1032,
+            1808
+          ]
+        },
+        "heapMB": {
+          "median": 84,
+          "range": [
+            67.6,
+            126.6
+          ]
+        },
+        "domNodes": {
+          "median": 3921,
+          "range": [
+            1397,
+            6532
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.995,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 16827,
+          "range": [
+            14530,
+            18315
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            957,
+            957
+          ]
+        },
+        "fps": {
+          "median": 56.7,
+          "range": [
+            56,
+            58.1
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 50.1,
+          "range": [
+            33.5,
+            66.6
+          ]
+        },
+        "longTasks": {
+          "median": 9,
+          "range": [
+            2,
+            10
+          ]
+        },
+        "longTaskMax": {
+          "median": 281,
+          "range": [
+            270,
+            379
+          ]
+        },
+        "mainBusyPct": {
+          "median": 6.5,
+          "range": [
+            5.5,
+            7.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 23.6,
+          "range": [
+            18.8,
+            24.3
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 8.5,
+          "range": [
+            7.8,
+            10.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 18.9,
+          "range": [
+            18.8,
+            19.1
+          ]
+        },
+        "flashesPerSec": {
+          "median": 1.8,
+          "range": [
+            1.6,
+            1.8
+          ]
+        },
+        "scrollFps": {
+          "median": 8.7,
+          "range": [
+            7.5,
+            9.5
+          ]
+        },
+        "scrollP95": {
+          "median": 233.3,
+          "range": [
+            216.7,
+            300
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 872,
+          "range": [
+            720,
+            1336
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 952,
+          "range": [
+            200,
+            1200
+          ]
+        },
+        "heapMB": {
+          "median": 100.2,
+          "range": [
+            83.5,
+            117.3
+          ]
+        },
+        "domNodes": {
+          "median": 11498,
+          "range": [
+            10193,
+            13279
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 500,
+      "tps": 100,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10541,
+          "range": [
+            9772,
+            12476
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 53,
+          "range": [
+            47.2,
+            53.6
+          ]
+        },
+        "p95": {
+          "median": 17.1,
+          "range": [
+            16.9,
+            33.4
+          ]
+        },
+        "p99": {
+          "median": 100.1,
+          "range": [
+            83.3,
+            133.5
+          ]
+        },
+        "longTasks": {
+          "median": 30,
+          "range": [
+            24,
+            40
+          ]
+        },
+        "longTaskMax": {
+          "median": 1430,
+          "range": [
+            1116,
+            2030
+          ]
+        },
+        "mainBusyPct": {
+          "median": 8.4,
+          "range": [
+            7.7,
+            10.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 49.4,
+          "range": [
+            46.4,
+            66.4
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 8,
+          "range": [
+            7.6,
+            8.6
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75.9,
+          "range": [
+            75.7,
+            77.1
+          ]
+        },
+        "flashesPerSec": {
+          "median": 2.8,
+          "range": [
+            2.8,
+            2.8
+          ]
+        },
+        "scrollFps": {
+          "median": 4.7,
+          "range": [
+            2.9,
+            5.2
+          ]
+        },
+        "scrollP95": {
+          "median": 466.7,
+          "range": [
+            316.6,
+            1349.9
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1888,
+          "range": [
+            1496,
+            2928
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1256,
+          "range": [
+            912,
+            1768
+          ]
+        },
+        "heapMB": {
+          "median": 104,
+          "range": [
+            49.2,
+            115.1
+          ]
+        },
+        "domNodes": {
+          "median": 5129,
+          "range": [
+            1403,
+            5574
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 14059,
+          "range": [
+            13439,
+            17167
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 50.6,
+          "range": [
+            49.1,
+            53.2
+          ]
+        },
+        "p95": {
+          "median": 33.4,
+          "range": [
+            33.3,
+            33.5
+          ]
+        },
+        "p99": {
+          "median": 100,
+          "range": [
+            66.6,
+            116.6
+          ]
+        },
+        "longTasks": {
+          "median": 19,
+          "range": [
+            14,
+            23
+          ]
+        },
+        "longTaskMax": {
+          "median": 377,
+          "range": [
+            319,
+            424
+          ]
+        },
+        "mainBusyPct": {
+          "median": 10.6,
+          "range": [
+            9.7,
+            11.3
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 45.4,
+          "range": [
+            39.4,
+            49.1
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 19.9,
+          "range": [
+            18.9,
+            22.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75.9,
+          "range": [
+            75.7,
+            77
+          ]
+        },
+        "flashesPerSec": {
+          "median": 6.4,
+          "range": [
+            6.3,
+            6.4
+          ]
+        },
+        "scrollFps": {
+          "median": 7.5,
+          "range": [
+            6.8,
+            7.9
+          ]
+        },
+        "scrollP95": {
+          "median": 333.5,
+          "range": [
+            299.9,
+            366.5
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 792,
+          "range": [
+            632,
+            920
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1072,
+          "range": [
+            976,
+            1256
+          ]
+        },
+        "heapMB": {
+          "median": 110.4,
+          "range": [
+            96.4,
+            115.9
+          ]
+        },
+        "domNodes": {
+          "median": 11212,
+          "range": [
+            9857,
+            11462
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 500,
+      "tps": 400,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10505,
+          "range": [
+            9525,
+            10954
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 28.3,
+          "range": [
+            19.5,
+            35
+          ]
+        },
+        "p95": {
+          "median": 166.5,
+          "range": [
+            133.3,
+            249.8
+          ]
+        },
+        "p99": {
+          "median": 283.4,
+          "range": [
+            216.6,
+            333.3
+          ]
+        },
+        "longTasks": {
+          "median": 68,
+          "range": [
+            67,
+            69
+          ]
+        },
+        "longTaskMax": {
+          "median": 1404,
+          "range": [
+            1343,
+            1694
+          ]
+        },
+        "mainBusyPct": {
+          "median": 16,
+          "range": [
+            13.9,
+            16.9
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 118.7,
+          "range": [
+            97,
+            130.5
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 15.1,
+          "range": [
+            12.9,
+            15.7
+          ]
+        },
+        "ticksPerSec": {
+          "median": 285.3,
+          "range": [
+            274.8,
+            286.1
+          ]
+        },
+        "flashesPerSec": {
+          "median": 12.6,
+          "range": [
+            12.1,
+            13
+          ]
+        },
+        "scrollFps": {
+          "median": 2.5,
+          "range": [
+            1.7,
+            3
+          ]
+        },
+        "scrollP95": {
+          "median": 1250.2,
+          "range": [
+            1150.1,
+            1733.3
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1576,
+          "range": [
+            1328,
+            1928
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1160,
+          "range": [
+            1096,
+            1464
+          ]
+        },
+        "heapMB": {
+          "median": 102.2,
+          "range": [
+            69.5,
+            119.7
+          ]
+        },
+        "domNodes": {
+          "median": 4655,
+          "range": [
+            1413,
+            5966
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 14094,
+          "range": [
+            12985,
+            15065
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 26.8,
+          "range": [
+            21,
+            31.9
+          ]
+        },
+        "p95": {
+          "median": 166.6,
+          "range": [
+            133.3,
+            233.3
+          ]
+        },
+        "p99": {
+          "median": 300,
+          "range": [
+            216.9,
+            383.5
+          ]
+        },
+        "longTasks": {
+          "median": 67,
+          "range": [
+            60,
+            72
+          ]
+        },
+        "longTaskMax": {
+          "median": 643,
+          "range": [
+            520,
+            879
+          ]
+        },
+        "mainBusyPct": {
+          "median": 15.9,
+          "range": [
+            15.8,
+            18.4
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 98.9,
+          "range": [
+            95.9,
+            119.7
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 26,
+          "range": [
+            23.2,
+            26.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 253.9,
+          "range": [
+            187.4,
+            271.4
+          ]
+        },
+        "flashesPerSec": {
+          "median": 19.5,
+          "range": [
+            14.6,
+            21.1
+          ]
+        },
+        "scrollFps": {
+          "median": 5,
+          "range": [
+            4.6,
+            6
+          ]
+        },
+        "scrollP95": {
+          "median": 516.4,
+          "range": [
+            416.5,
+            566.8
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 864,
+          "range": [
+            744,
+            1152
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 944,
+          "range": [
+            840,
+            984
+          ]
+        },
+        "heapMB": {
+          "median": 110.9,
+          "range": [
+            90.4,
+            201.4
+          ]
+        },
+        "domNodes": {
+          "median": 9690,
+          "range": [
+            6150,
+            17639
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.89,
+        "pass": {
+          "ticksRatio": false,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 1000,
+      "tps": 25,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 11183,
+          "range": [
+            9757,
+            15486
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 57.4,
+          "range": [
+            55.7,
+            58.7
+          ]
+        },
+        "p95": {
+          "median": 16.9,
+          "range": [
+            16.9,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 33.4,
+          "range": [
+            33.3,
+            50
+          ]
+        },
+        "longTasks": {
+          "median": 10,
+          "range": [
+            4,
+            23
+          ]
+        },
+        "longTaskMax": {
+          "median": 1198,
+          "range": [
+            909,
+            1782
+          ]
+        },
+        "mainBusyPct": {
+          "median": 6.4,
+          "range": [
+            5.6,
+            7.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 41.8,
+          "range": [
+            36,
+            46.7
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 1.2,
+          "range": [
+            1,
+            1.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.4,
+          "range": [
+            19.3,
+            19.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 0.2,
+          "range": [
+            0.2,
+            0.2
+          ]
+        },
+        "scrollFps": {
+          "median": 7.6,
+          "range": [
+            4.2,
+            9.7
+          ]
+        },
+        "scrollP95": {
+          "median": 250,
+          "range": [
+            200.1,
+            366.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 2216,
+          "range": [
+            1048,
+            2512
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1232,
+          "range": [
+            1136,
+            1808
+          ]
+        },
+        "heapMB": {
+          "median": 97.2,
+          "range": [
+            36.2,
+            132.7
+          ]
+        },
+        "domNodes": {
+          "median": 4760,
+          "range": [
+            931,
+            5913
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.995,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 14695,
+          "range": [
+            13701,
+            16678
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 59.4,
+          "range": [
+            59,
+            59.9
+          ]
+        },
+        "p95": {
+          "median": 16.8,
+          "range": [
+            16.8,
+            16.9
+          ]
+        },
+        "p99": {
+          "median": 17,
+          "range": [
+            16.9,
+            17.1
+          ]
+        },
+        "longTasks": {
+          "median": 1,
+          "range": [
+            0,
+            2
+          ]
+        },
+        "longTaskMax": {
+          "median": 249,
+          "range": [
+            218,
+            338
+          ]
+        },
+        "mainBusyPct": {
+          "median": 3.8,
+          "range": [
+            3.5,
+            4.7
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 11.8,
+          "range": [
+            11.5,
+            15.6
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 1,
+          "range": [
+            0.8,
+            1.2
+          ]
+        },
+        "ticksPerSec": {
+          "median": 19.5,
+          "range": [
+            19.5,
+            19.5
+          ]
+        },
+        "flashesPerSec": {
+          "median": 0.2,
+          "range": [
+            0.2,
+            0.2
+          ]
+        },
+        "scrollFps": {
+          "median": 9.3,
+          "range": [
+            7.9,
+            12.8
+          ]
+        },
+        "scrollP95": {
+          "median": 216.7,
+          "range": [
+            183.3,
+            266.8
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 904,
+          "range": [
+            728,
+            1000
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1272,
+          "range": [
+            1096,
+            1328
+          ]
+        },
+        "heapMB": {
+          "median": 108.3,
+          "range": [
+            104.3,
+            116.7
+          ]
+        },
+        "domNodes": {
+          "median": 11324,
+          "range": [
+            10532,
+            13205
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 1000,
+      "tps": 100,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 10737,
+          "range": [
+            8214,
+            13408
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 54.4,
+          "range": [
+            53.5,
+            55.8
+          ]
+        },
+        "p95": {
+          "median": 17,
+          "range": [
+            16.9,
+            33.2
+          ]
+        },
+        "p99": {
+          "median": 83.2,
+          "range": [
+            66.6,
+            83.4
+          ]
+        },
+        "longTasks": {
+          "median": 23,
+          "range": [
+            19,
+            27
+          ]
+        },
+        "longTaskMax": {
+          "median": 1228,
+          "range": [
+            974,
+            1383
+          ]
+        },
+        "mainBusyPct": {
+          "median": 7.9,
+          "range": [
+            7.4,
+            8.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 48.2,
+          "range": [
+            44.5,
+            50.8
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 6.7,
+          "range": [
+            6.4,
+            7.1
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75,
+          "range": [
+            75,
+            75.8
+          ]
+        },
+        "flashesPerSec": {
+          "median": 2.1,
+          "range": [
+            1.9,
+            2.1
+          ]
+        },
+        "scrollFps": {
+          "median": 6.8,
+          "range": [
+            6.2,
+            7.5
+          ]
+        },
+        "scrollP95": {
+          "median": 300,
+          "range": [
+            250,
+            366.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1320,
+          "range": [
+            1064,
+            1512
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1272,
+          "range": [
+            1064,
+            2320
+          ]
+        },
+        "heapMB": {
+          "median": 114.8,
+          "range": [
+            96.2,
+            141.4
+          ]
+        },
+        "domNodes": {
+          "median": 5936,
+          "range": [
+            4355,
+            6429
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 14456,
+          "range": [
+            12900,
+            15142
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 956,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 55,
+          "range": [
+            52.5,
+            55.4
+          ]
+        },
+        "p95": {
+          "median": 17,
+          "range": [
+            16.9,
+            33.2
+          ]
+        },
+        "p99": {
+          "median": 50.1,
+          "range": [
+            50,
+            83.4
+          ]
+        },
+        "longTasks": {
+          "median": 12,
+          "range": [
+            10,
+            14
+          ]
+        },
+        "longTaskMax": {
+          "median": 281,
+          "range": [
+            237,
+            467
+          ]
+        },
+        "mainBusyPct": {
+          "median": 8,
+          "range": [
+            7.5,
+            9.2
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 30.7,
+          "range": [
+            29.2,
+            37.3
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 14.6,
+          "range": [
+            12.6,
+            15.8
+          ]
+        },
+        "ticksPerSec": {
+          "median": 75,
+          "range": [
+            74.8,
+            75.8
+          ]
+        },
+        "flashesPerSec": {
+          "median": 3.5,
+          "range": [
+            3.5,
+            3.6
+          ]
+        },
+        "scrollFps": {
+          "median": 8.5,
+          "range": [
+            6.6,
+            9.7
+          ]
+        },
+        "scrollP95": {
+          "median": 249.9,
+          "range": [
+            200,
+            316.6
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 800,
+          "range": [
+            640,
+            888
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1296,
+          "range": [
+            1048,
+            1720
+          ]
+        },
+        "heapMB": {
+          "median": 114.7,
+          "range": [
+            104.6,
+            116
+          ]
+        },
+        "domNodes": {
+          "median": 11348,
+          "range": [
+            10972,
+            12868
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": true,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    },
+    {
+      "device": "mobile",
+      "size": 1000,
+      "tps": 400,
+      "profile": "full",
+      "failed": {
+        "mui": 0,
+        "ag": 0
+      },
+      "mui": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 9926,
+          "range": [
+            7827,
+            11836
+          ]
+        },
+        "jsKB": {
+          "median": 6961,
+          "range": [
+            6961,
+            6961
+          ]
+        },
+        "jsTransferKB": {
+          "median": 42,
+          "range": [
+            42,
+            42
+          ]
+        },
+        "fps": {
+          "median": 43.4,
+          "range": [
+            41,
+            44.9
+          ]
+        },
+        "p95": {
+          "median": 66.6,
+          "range": [
+            50.1,
+            66.7
+          ]
+        },
+        "p99": {
+          "median": 166.8,
+          "range": [
+            149.9,
+            183.3
+          ]
+        },
+        "longTasks": {
+          "median": 51,
+          "range": [
+            48,
+            53
+          ]
+        },
+        "longTaskMax": {
+          "median": 1437,
+          "range": [
+            1253,
+            2076
+          ]
+        },
+        "mainBusyPct": {
+          "median": 11.4,
+          "range": [
+            11.1,
+            11.9
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 74.8,
+          "range": [
+            73.1,
+            79.7
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 12.8,
+          "range": [
+            12.2,
+            13.3
+          ]
+        },
+        "ticksPerSec": {
+          "median": 294.5,
+          "range": [
+            294,
+            297.8
+          ]
+        },
+        "flashesPerSec": {
+          "median": 6.9,
+          "range": [
+            6.8,
+            6.9
+          ]
+        },
+        "scrollFps": {
+          "median": 2.9,
+          "range": [
+            2.1,
+            15.6
+          ]
+        },
+        "scrollP95": {
+          "median": 1200,
+          "range": [
+            266.6,
+            1750
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 1576,
+          "range": [
+            1544,
+            2696
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1320,
+          "range": [
+            1184,
+            1360
+          ]
+        },
+        "heapMB": {
+          "median": 112.3,
+          "range": [
+            95.6,
+            140.2
+          ]
+        },
+        "domNodes": {
+          "median": 5788,
+          "range": [
+            4511,
+            8366
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 1,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      },
+      "ag": {
+        "n": 5,
+        "firstRowsMs": {
+          "median": 13986,
+          "range": [
+            12950,
+            19433
+          ]
+        },
+        "jsKB": {
+          "median": 10099,
+          "range": [
+            10099,
+            10099
+          ]
+        },
+        "jsTransferKB": {
+          "median": 957,
+          "range": [
+            956,
+            957
+          ]
+        },
+        "fps": {
+          "median": 43.2,
+          "range": [
+            36.2,
+            43.7
+          ]
+        },
+        "p95": {
+          "median": 50.1,
+          "range": [
+            50,
+            100
+          ]
+        },
+        "p99": {
+          "median": 133.4,
+          "range": [
+            133.3,
+            200
+          ]
+        },
+        "longTasks": {
+          "median": 40,
+          "range": [
+            37,
+            52
+          ]
+        },
+        "longTaskMax": {
+          "median": 494,
+          "range": [
+            417,
+            585
+          ]
+        },
+        "mainBusyPct": {
+          "median": 13.7,
+          "range": [
+            13.2,
+            16.1
+          ]
+        },
+        "scriptMsPerSec": {
+          "median": 70.1,
+          "range": [
+            67,
+            89.7
+          ]
+        },
+        "layoutStyleMsPerSec": {
+          "median": 25.2,
+          "range": [
+            24.2,
+            27.9
+          ]
+        },
+        "ticksPerSec": {
+          "median": 286.3,
+          "range": [
+            272.1,
+            294.6
+          ]
+        },
+        "flashesPerSec": {
+          "median": 12.3,
+          "range": [
+            11.7,
+            12.7
+          ]
+        },
+        "scrollFps": {
+          "median": 7.1,
+          "range": [
+            6.9,
+            7.5
+          ]
+        },
+        "scrollP95": {
+          "median": 333.4,
+          "range": [
+            333.2,
+            383.4
+          ]
+        },
+        "scrollBlank": {
+          "median": 0,
+          "range": [
+            0,
+            0
+          ]
+        },
+        "openTicketMs": {
+          "median": 880,
+          "range": [
+            760,
+            1904
+          ]
+        },
+        "sortMs": {
+          "median": null,
+          "range": null
+        },
+        "filterMs": {
+          "median": 1264,
+          "range": [
+            1064,
+            1464
+          ]
+        },
+        "heapMB": {
+          "median": 97.4,
+          "range": [
+            78.4,
+            140.1
+          ]
+        },
+        "domNodes": {
+          "median": 10533,
+          "range": [
+            7381,
+            16830
+          ]
+        },
+        "exceptions": 0,
+        "ticksRatio": 0.972,
+        "pass": {
+          "ticksRatio": true,
+          "idleP95": false,
+          "scrollFps": false,
+          "longTaskMax": false
+        }
+      }
+    }
+  ],
+  "soak": [
+    {
+      "widget": "mui",
+      "minutes": 9.6,
+      "heapStartMB": 88.2,
+      "heapEndMB": 92.9,
+      "heapGrowthPct": 5.3,
+      "nodesStart": 6244,
+      "nodesEnd": 6337,
+      "nodesGrowthPct": 1.5,
+      "samples": [
+        {
+          "t": 0,
+          "heapMB": 88.2,
+          "nodes": 6244,
+          "listeners": 7770
+        },
+        {
+          "t": 31,
+          "heapMB": 90.6,
+          "nodes": 6333,
+          "listeners": 7816
+        },
+        {
+          "t": 61,
+          "heapMB": 91.3,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 91,
+          "heapMB": 91.5,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 122,
+          "heapMB": 91.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 152,
+          "heapMB": 92.8,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 182,
+          "heapMB": 92.8,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 213,
+          "heapMB": 92.8,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 243,
+          "heapMB": 93.1,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 273,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 304,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 334,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 364,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 395,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 425,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 455,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 485,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 516,
+          "heapMB": 93.2,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 546,
+          "heapMB": 93,
+          "nodes": 6337,
+          "listeners": 7816
+        },
+        {
+          "t": 576,
+          "heapMB": 92.9,
+          "nodes": 6337,
+          "listeners": 7816
+        }
+      ]
+    },
+    {
+      "widget": "ag",
+      "minutes": 9.6,
+      "heapStartMB": 96.2,
+      "heapEndMB": 92,
+      "heapGrowthPct": -4.4,
+      "nodesStart": 9397,
+      "nodesEnd": 9331,
+      "nodesGrowthPct": -0.7,
+      "samples": [
+        {
+          "t": 0,
+          "heapMB": 96.2,
+          "nodes": 9397,
+          "listeners": 9844
+        },
+        {
+          "t": 30,
+          "heapMB": 99.3,
+          "nodes": 9423,
+          "listeners": 9863
+        },
+        {
+          "t": 61,
+          "heapMB": 94,
+          "nodes": 9336,
+          "listeners": 9525
+        },
+        {
+          "t": 91,
+          "heapMB": 94.4,
+          "nodes": 9328,
+          "listeners": 9525
+        },
+        {
+          "t": 121,
+          "heapMB": 95,
+          "nodes": 9329,
+          "listeners": 9525
+        },
+        {
+          "t": 151,
+          "heapMB": 95.5,
+          "nodes": 9331,
+          "listeners": 9525
+        },
+        {
+          "t": 182,
+          "heapMB": 95.6,
+          "nodes": 9335,
+          "listeners": 9525
+        },
+        {
+          "t": 212,
+          "heapMB": 95.7,
+          "nodes": 9335,
+          "listeners": 9525
+        },
+        {
+          "t": 242,
+          "heapMB": 95.8,
+          "nodes": 9323,
+          "listeners": 9525
+        },
+        {
+          "t": 272,
+          "heapMB": 95.9,
+          "nodes": 9329,
+          "listeners": 9525
+        },
+        {
+          "t": 303,
+          "heapMB": 96,
+          "nodes": 9336,
+          "listeners": 9525
+        },
+        {
+          "t": 333,
+          "heapMB": 96.2,
+          "nodes": 9329,
+          "listeners": 9525
+        },
+        {
+          "t": 363,
+          "heapMB": 91.3,
+          "nodes": 9335,
+          "listeners": 9525
+        },
+        {
+          "t": 393,
+          "heapMB": 91.4,
+          "nodes": 9333,
+          "listeners": 9525
+        },
+        {
+          "t": 423,
+          "heapMB": 91.6,
+          "nodes": 9335,
+          "listeners": 9525
+        },
+        {
+          "t": 454,
+          "heapMB": 91.7,
+          "nodes": 9329,
+          "listeners": 9525
+        },
+        {
+          "t": 484,
+          "heapMB": 91.7,
+          "nodes": 9338,
+          "listeners": 9525
+        },
+        {
+          "t": 514,
+          "heapMB": 91.8,
+          "nodes": 9331,
+          "listeners": 9525
+        },
+        {
+          "t": 545,
+          "heapMB": 91.9,
+          "nodes": 9332,
+          "listeners": 9525
+        },
+        {
+          "t": 575,
+          "heapMB": 92,
+          "nodes": 9331,
+          "listeners": 9525
+        }
+      ]
+    }
+  ]
+}

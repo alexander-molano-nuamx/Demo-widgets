@@ -71,3 +71,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# benchmark runs in progress (dated baselines under bench/results/<date>/ are versioned)
+/bench/results/current/
