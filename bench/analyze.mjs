@@ -73,7 +73,8 @@ const scenarios = [...groups.values()].map((g) => {
     scrollP95: metric(list, (r) => r.scroll?.p95),
     scrollBlank: metric(list, (r) => (r.scroll ? r.scroll.blankFrames / Math.max(1, r.scroll.samples) : null)),
     openTicketMs:
-      list[0]?.device === "mobile"
+      // Mobile ticket from the supplementary pass when there is one (2026-10-06 baseline only).
+      list[0]?.device === "mobile" && mobileTicket.length
         ? metric(
             mobileTicket.filter((t) => t.size === list[0].size && t.tps === list[0].tps && t.widget === list[0].widget),
             (r) => inter(r, "openTicket"),

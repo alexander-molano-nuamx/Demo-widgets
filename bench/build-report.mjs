@@ -6,8 +6,6 @@ import { pathToFileURL } from "node:url";
 
 const DIR = process.argv[2] ? pathToFileURL(resolve(process.argv[2]) + "/") : new URL("./results/current/", import.meta.url);
 const summary = JSON.parse(readFileSync(new URL("./summary.json", DIR), "utf8"));
-const soak = Object.fromEntries(summary.soak.map((s) => [s.widget, s]));
-const pct = (v) => (v == null ? "—" : `${v > 0 ? "+" : ""}${v.toFixed(1).replace(".", ",")} %`);
 const date = summary.totals.firstRunAt
   ? new Date(summary.totals.firstRunAt).toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" })
   : "—";
@@ -18,11 +16,9 @@ const runs = [
 ].filter(Boolean).join(" + ");
 
 let html = readFileSync(new URL("./report.template.html", import.meta.url), "utf8")
-  .replace("/*__DATA__*/null", JSON.stringify({ scenarios: summary.scenarios, criteria: summary.criteria, soak: summary.soak }))
+  .replace("/*__DATA__*/null", JSON.stringify({ widgets: summary.widgets, scenarios: summary.scenarios, criteria: summary.criteria, soak: summary.soak }))
   .replace("<strong>__RUNS__</strong> corridas · 5 repeticiones por escenario", `${runs} · 5 repeticiones por escenario`)
-  .replace("__DATE__", date)
-  .replace("__SOAK_MUI__", pct(soak.mui?.heapGrowthPct))
-  .replace("__SOAK_AG__", pct(soak.ag?.heapGrowthPct));
+  .replace("__DATE__", date);
 
 const leftover = html.match(/__[A-Z_]+__/);
 if (leftover) throw new Error(`Placeholder sin reemplazar en la plantilla: ${leftover[0]}`);

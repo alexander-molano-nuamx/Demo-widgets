@@ -67,8 +67,9 @@ Criterios de aprobación (en `analyze.mjs`): ticks entregados ≥ 95 %, frame p9
 
 - **JS transferido no es comparable**: la librería MUI queda en caché desde la página de login. Se compara el JS ejecutado (decodificado).
 - **Ordenar** tiene mucha variación entre repeticiones; tomarlo como indicativo.
-- `report.template.html` tiene **texto de conclusiones escrito para la medición del 2026-10-06** (veredicto, notas por sección y próximos pasos). Las tablas y los gráficos se generan desde los datos, pero el texto hay que revisarlo y ajustarlo en cada medición nueva.
+- `report.template.html` tiene **texto de conclusiones escrito para la medición `2026-10-06-4ed`** (veredicto, notas por sección y próximos pasos). Las tablas y los gráficos se generan desde los datos, pero el texto hay que revisarlo y ajustarlo en cada medición nueva.
 
 ## Resultados guardados
 
-- `results/2026-10-06/`: primera medición completa, MUI X Pro vs AG Grid Enterprise (Chrome headless en laptop i5-1335U con antivirus corporativo). Informe publicado: https://claude.ai/artifact/XW4gCpsvckfBnk4Dh6MquN
+- `results/2026-10-06/`: primera medición completa, MUI X Pro vs AG Grid Enterprise (Chrome headless en laptop i5-1335U con antivirus corporativo). Su informe quedó en `report.html` de esa carpeta.
+- `results/2026-10-06-4ed/`: las 4 ediciones (360 corridas + 4 de resistencia, corrida nocturna). Informe publicado (reemplazó al anterior en el mismo enlace): https://claude.ai/artifact/XW4gCpsvckfBnk4Dh6MquN
